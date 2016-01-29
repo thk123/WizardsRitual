@@ -7,6 +7,7 @@ public class WaterBalloon : MonoBehaviour {
 
 	public float Speed = 10.0f;
 
+	public float ArrivalDistance = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -17,8 +18,16 @@ public class WaterBalloon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 MovementVector = (Target - ((Vector2)transform.position)).normalized;
-		transform.position += ((Vector3)MovementVector) * Time.deltaTime * Speed;
+		Vector2 DistanceToGo = Target - ((Vector2)transform.position);
+		if(DistanceToGo.sqrMagnitude > ArrivalDistance * ArrivalDistance)
+		{
+			Vector2 MovementVector = DistanceToGo.normalized;
+			transform.position += ((Vector3)MovementVector) * Time.deltaTime * Speed;
+		}
+		else
+		{
+			GameObject.Destroy(gameObject);
+		}
 	}
 
 	Vector2 PickStartPosition()
