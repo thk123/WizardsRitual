@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class HazardSpawner : MonoBehaviour {
 
-	public List<GameObject> Hazards;
+	public List<Hazard> Hazards;
 
 	public float MeanFrequency;
 	public float FrequencyVariance;

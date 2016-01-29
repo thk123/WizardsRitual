@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WaterBalloon : MonoBehaviour {
+public class WaterBalloon : Hazard {
 
 	Vector2 Target;
 
