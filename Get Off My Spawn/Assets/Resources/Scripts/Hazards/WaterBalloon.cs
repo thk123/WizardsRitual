@@ -6,23 +6,35 @@ public class WaterBalloon : MonoBehaviour {
 	Vector2 Target;
 
 	public float Speed = 10.0f;
+	public float RampUpTime = 0.5f;
+	public AnimationCurve AccelerationCurve = AnimationCurve.EaseInOut(0.0f, 0.0f, 1.0f, 1.0f);
+	float TimeElapsed;
 
 	public float ArrivalDistance = 1.0f;
+
 
 	// Use this for initialization
 	void Start () {
 		Target = Camera.main.ScreenToWorldPoint(PickTarget());
+		Vector2 StartingPosition = Camera.main.ScreenToWorldPoint(PickStartPosition());
+		transform.position = StartingPosition;
 
-		transform.position = Camera.main.ScreenToWorldPoint(PickStartPosition());
+		TimeElapsed = 0.0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 DistanceToGo = Target - ((Vector2)transform.position);
-		if(DistanceToGo.sqrMagnitude > ArrivalDistance * ArrivalDistance)
+		Vector2 DistanceToGoVector = Target - ((Vector2)transform.position);
+		float DistanceToGo = DistanceToGoVector.sqrMagnitude;
+
+		if(DistanceToGo > ArrivalDistance * ArrivalDistance)
 		{
-			Vector2 MovementVector = DistanceToGo.normalized;
-			transform.position += ((Vector3)MovementVector) * Time.deltaTime * Speed;
+			TimeElapsed += Time.deltaTime;
+			
+			float Velocity = Speed * AccelerationCurve.Evaluate(TimeElapsed / RampUpTime);
+			print(Velocity);
+			Vector2 MovementVector = DistanceToGoVector.normalized;
+			transform.position += ((Vector3)MovementVector) * Time.deltaTime * Velocity;
 		}
 		else
 		{
