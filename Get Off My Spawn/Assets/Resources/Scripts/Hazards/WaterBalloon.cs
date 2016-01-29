@@ -9,9 +9,14 @@ public class WaterBalloon : MonoBehaviour {
 	public float RampUpTime = 0.5f;
 	public AnimationCurve AccelerationCurve = AnimationCurve.EaseInOut(0.0f, 0.0f, 1.0f, 1.0f);
 	float TimeElapsed;
+    Rigidbody2D rbody;
 
 	public float ArrivalDistance = 1.0f;
 
+    void Awake()
+    {
+        rbody = GetComponent<Rigidbody2D>();
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -32,9 +37,7 @@ public class WaterBalloon : MonoBehaviour {
 			TimeElapsed += Time.deltaTime;
 			
 			float Velocity = Speed * AccelerationCurve.Evaluate(TimeElapsed / RampUpTime);
-			
-			Vector2 MovementVector = DistanceToGoVector.normalized;
-			transform.position += ((Vector3)MovementVector) * Time.deltaTime * Velocity;
+            rbody.velocity = DistanceToGoVector.normalized * Velocity;
 		}
 		else
 		{
