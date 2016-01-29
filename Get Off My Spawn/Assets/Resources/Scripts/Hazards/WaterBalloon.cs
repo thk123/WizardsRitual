@@ -32,7 +32,7 @@ public class WaterBalloon : MonoBehaviour {
 			TimeElapsed += Time.deltaTime;
 			
 			float Velocity = Speed * AccelerationCurve.Evaluate(TimeElapsed / RampUpTime);
-			print(Velocity);
+			
 			Vector2 MovementVector = DistanceToGoVector.normalized;
 			transform.position += ((Vector3)MovementVector) * Time.deltaTime * Velocity;
 		}
