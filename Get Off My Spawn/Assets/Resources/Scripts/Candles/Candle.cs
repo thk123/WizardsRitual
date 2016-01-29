@@ -7,18 +7,16 @@ public class Candle : MonoBehaviour {
 	bool IsCandleLit;
 
 	void Start () {
-	
+		IsCandleLit = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
-	void OnCollisionEntrer2D(Collider2D Collider)
+	void OnTriggerEnter2D(Collider2D Collider)
 	{
-		print("Collided");
-
 		if(Collider.tag == Utility.PlayerTag)
 		{
 			if(!IsCandleLit)
