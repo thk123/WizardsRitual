@@ -17,18 +17,31 @@ public class Candle : MonoBehaviour {
 
 	void OnCollisionEntrer2D(Collider2D Collider)
 	{
-		print("Collided")
+		print("Collided");
 
 		if(Collider.tag == Utility.PlayerTag)
 		{
 			if(!IsCandleLit)
 			{
-				IsCandleLit = true;
+				SetCandleLit(true);
 			}
 		}
 	}
 
-	bool GetIsCandleLit()
+	public void SetCandleLit(bool IsLit)
+	{
+		IsCandleLit = IsLit;
+		if(IsCandleLit)
+		{
+			gameObject.GetComponent<SpriteRenderer>().color = Color.yellow; 
+		}
+		else
+		{
+			gameObject.GetComponent<SpriteRenderer>().color = Color.white; 	
+		}
+	}
+
+	public bool GetIsCandleLit()
 	{
 		return IsCandleLit;
 	}
