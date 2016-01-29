@@ -5,7 +5,6 @@ public class PhysicsPlayerControl : MonoBehaviour {
 
     // Use this for initialization
     public float P, I, D, Imax;
-    public float impact_sensitivity = 0.02f;
 
     Animator anim;
     Rigidbody2D rbody;
@@ -29,7 +28,11 @@ public class PhysicsPlayerControl : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collid)
     {
         // Apply an impulse, destroy the bullet
-        rbody.AddForce(collid.GetComponent<Rigidbody2D>().velocity*impact_sensitivity, ForceMode2D.Impulse);
-        Destroy(collid.gameObject);
+        Hazard coll_hazard = collid.GetComponent<Hazard>();
+        if (coll_hazard != null)
+        {
+            rbody.AddForce(collid.GetComponent<Rigidbody2D>().velocity *coll_hazard.WizardImpactStrength, ForceMode2D.Impulse);
+            Destroy(collid.gameObject);
+        }
     }
 }
