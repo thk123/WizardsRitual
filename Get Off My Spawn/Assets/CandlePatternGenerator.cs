@@ -7,16 +7,19 @@ public class CandlePatternGenerator : MonoBehaviour {
     public float tot_radius = 3.0f;
     public int candle_num = 5;
     public int circle_num = 1;
-    public SortingLayer circle_sortlayer;
-
+    public Color circle_color;
+    public float circle_width;
+    public Material circle_material;
     public GameObject candle_prefab;
 
     List<List<Vector2>> pattern;
+    LineRenderer[] circle_rends;
 
 	// Use this for initialization
 	void Awake () {
 
         int[] circle_sizes = new int[circle_num];
+        circle_rends = new LineRenderer[circle_num];
 
         // Assign the sizes, from the outermost, going inwards
         int candles = candle_num;
@@ -51,7 +54,28 @@ public class CandlePatternGenerator : MonoBehaviour {
                 candle.transform.SetParent(transform);
                 candle.transform.localPosition = (Vector3)pattern[i][j];
             }
+            
+            // Now draw the circle
+            GameObject circle_draw = new GameObject("circle_" + (i+1));
+            circle_draw.transform.SetParent(transform);
+            circle_draw.transform.localPosition = Vector3.zero;
+            circle_rends[i] = circle_draw.AddComponent<LineRenderer>();
+            circle_rends[i].useWorldSpace = false;
+            circle_rends[i].SetVertexCount(circle_sizes[i]+1);
+            circle_rends[i].SetColors(circle_color, circle_color);
+            circle_rends[i].SetWidth(circle_width, circle_width);
+            circle_rends[i].material = circle_material;
+            circle_rends[i].sortingLayerName = "Circle";
+            for (int j = 0; j <= circle_sizes[i]; ++j)
+            {
+                if (j < circle_sizes[i])
+                    circle_rends[i].SetPosition(j, (Vector3)pattern[i][j]);
+                else
+                    circle_rends[i].SetPosition(j, (Vector3)pattern[i][0]);
+            }
+
         }
+
 	}
 	
 	// Update is called once per frame
