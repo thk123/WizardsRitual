@@ -27,4 +27,7 @@ public class Utility : MonoBehaviour {
     	float fac = Mathf.Sqrt(-2.0f * Mathf.Log(S) / S);
     	return Mean + (u * fac * Variance);
 	}
+
+	public const string PlayerTag = "Player";
+	public const string CandleTag = "Candle";
 }
