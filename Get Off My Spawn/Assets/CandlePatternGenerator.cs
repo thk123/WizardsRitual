@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class CandlePatternGenerator : MonoBehaviour {
 
+    struct candle_pos
+    {
+        public int circle;
+        public int candle;
+    }
+
     public float tot_radius = 3.0f;
     public int candle_num = 5;
     public int circle_num = 1;
@@ -14,6 +20,7 @@ public class CandlePatternGenerator : MonoBehaviour {
 
     List<List<Vector2>> pattern;
     LineRenderer[] circle_rends;
+    Queue<candle_pos> correct_sequence;
 
 	// Use this for initialization
 	void Awake () {
@@ -76,7 +83,29 @@ public class CandlePatternGenerator : MonoBehaviour {
 
         }
 
-	}
+        // And generate the correct sequence!
+        List<candle_pos> ordered_sequence = new List<candle_pos>();
+        candle_pos cpos = new candle_pos();
+
+        for (int i = 0; i < circle_num; ++i)
+        {
+            for (int j = 0; j < circle_sizes[i]; ++j)
+            {
+                cpos.circle = i;
+                cpos.candle = j;
+                ordered_sequence.Add(cpos);
+            }
+        }
+        // Now shuffle the ordered sequence
+        for (int i = 0; i < ordered_sequence.Count; ++i)
+        {
+            int iswap = Random.Range(i, ordered_sequence.Count);
+            cpos = ordered_sequence[i];
+            ordered_sequence[i] = ordered_sequence[iswap];
+            ordered_sequence[iswap] = cpos;
+        }
+        correct_sequence = new Queue<candle_pos>(ordered_sequence);
+    }
 	
 	// Update is called once per frame
 	void Update () {
