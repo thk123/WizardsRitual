@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class WaterBalloon : Hazard {
 
@@ -19,9 +20,18 @@ public class WaterBalloon : Hazard {
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
-		Target = PickTarget();
-		Vector2 StartingPosition = Camera.main.ScreenToWorldPoint(PickStartPosition());
-		transform.position = StartingPosition;
+		Candle TargetCandle = PickTarget();
+		if(TargetCandle != null)
+		{
+			Target = GetTargetPosition(TargetCandle);
+			Vector2 StartingPosition = PickStartPosition();
+			transform.position = StartingPosition;
+		}
+		else
+		{
+			// No candles to target - don't lob a water balloon
+			Destroy(gameObject);
+		}
 
 		TimeElapsed = 0.0f;
 	}
@@ -45,15 +55,29 @@ public class WaterBalloon : Hazard {
 		}
 	}
 
-	Vector2 PickTarget()
+	Candle PickTarget()
 	{
-		Candle[] PossibleCandles = GameObject.FindObjectsOfType<Candle>();
+		Candle[] PossibleCandles = GameObject.FindObjectsOfType<Candle>()
+										.Where(Candle => Candle.GetIsCandleLit())
+										.ToArray();
 
-		Candle SelectedCandle = PossibleCandles[Random.Range(0, PossibleCandles.Length)];
+		if(PossibleCandles.Length > 0)
+		{
+			Candle SelectedCandle = PossibleCandles[Random.Range(0, PossibleCandles.Length)];
+	
+			return SelectedCandle;
+			
+		}
+		else
+		{
+			return null;
+		}
+	}
 
+	Vector2 GetTargetPosition(Candle Target)
+	{
 		Vector2 MissVector = Random.insideUnitCircle;
-
-		return ((Vector2)SelectedCandle.transform.position) + (MissVector * Inaccuracy);
+		return ((Vector2)Target.transform.position) + (MissVector * Inaccuracy);
 	}
 
 	protected override void OnTriggerEnter2D(Collider2D collid)
