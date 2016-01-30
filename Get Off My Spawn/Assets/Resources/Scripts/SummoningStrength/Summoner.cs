@@ -77,6 +77,8 @@ public class Summoner : MonoBehaviour {
         GetComponent<AudioSource>().Play();
         if (SummonSuccess != null)
             SummonSuccess();
+
+        FindObjectOfType<DifficultyManager>().NextDifficulty();
         // Also destroy every Hazard
         /*
         Hazard[] all_hazards = GameObject.FindObjectsOfType<Hazard>();

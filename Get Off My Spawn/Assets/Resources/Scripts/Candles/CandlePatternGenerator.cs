@@ -42,10 +42,34 @@ public class CandlePatternGenerator : MonoBehaviour {
     public GameObject NextCandlePrefab;
     GameObject CurrentMarker;
     Texture2D circle_drawing;
+    GameObject CircleObject;
 
 
 	// Use this for initialization
 	void Awake () {
+        Candles = new List<Candle>();
+        Restart();        
+    }
+	
+    public void Restart()
+    {
+        // Remove any candles
+        foreach(Candle candle in Candles)
+        {
+            GameObject.Destroy(candle.gameObject);
+        }
+
+        // Remove the circle
+        if(CircleObject != null)
+        {
+            GameObject.Destroy(CircleObject);
+        }
+
+        if(CurrentMarker != null)
+        {
+            GameObject.Destroy(CurrentMarker);
+            CurrentMarker = null;
+        }
 
         Candles = new List<Candle>();
 
@@ -90,65 +114,8 @@ public class CandlePatternGenerator : MonoBehaviour {
                 Candles.Add(candle);
 
             }
-            
-            // Now draw the circle
-            /*
-            GameObject circle_draw = new GameObject("circle_" + (circle_index+1));
-            circle_draw.transform.SetParent(transform);
-            circle_draw.transform.localPosition = Vector3.zero;
-            circle_rends[circle_index] = circle_draw.AddComponent<LineRenderer>();
-            circle_rends[circle_index].useWorldSpace = false;
-            circle_rends[circle_index].SetVertexCount(circle_sizes[circle_index]+1);
-            circle_rends[circle_index].SetColors(circle_color, circle_color);
-            circle_rends[circle_index].SetWidth(circle_width, circle_width);
-            circle_rends[circle_index].material = circle_material;
-            circle_rends[circle_index].sortingLayerName = "Circle";
-            for (int j = 0; j <= circle_sizes[circle_index]; ++j)
-            {
-                if (j < circle_sizes[circle_index])
-                    circle_rends[circle_index].SetPosition(j, (Vector3)pattern[circle_index][j]);
-                else
-                    circle_rends[circle_index].SetPosition(j, (Vector3)pattern[circle_index][0]);
-            }
-            */
 
         }
-
-        // And generate the correct sequence!
-        /*List<candle_pos> ordered_sequence = new List<candle_pos>();
-        candle_pos cpos = new candle_pos();
-
-        for (int i = 0; i < circle_num; ++i)
-        {
-            for (int j = 0; j < circle_sizes[i]; ++j)
-            {
-                cpos.circle = i;
-                cpos.candle = j;
-                ordered_sequence.Add(cpos);
-            }
-        }
-        // Now shuffle the ordered sequence
-        for (int i = 0; i < ordered_sequence.Count; ++i)
-        {
-            int iswap = Random.Range(i, ordered_sequence.Count);
-            cpos = ordered_sequence[i];
-            ordered_sequence[i] = ordered_sequence[iswap];
-            ordered_sequence[iswap] = cpos;
-        }
-        correct_sequence = new Queue<candle_pos>(ordered_sequence);*/
-
-        //List<candle_pos> ordered_sequence = new List<candle_pos>();
-        /*candle_pos cpos = new candle_pos();
-
-        for (int i = 0; i < circle_num; ++i)
-        {
-            for (int j = 0; j < circle_sizes[i]; ++j)
-            {
-                cpos.circle = i;
-                cpos.candle = j;
-                ordered_sequence.Add(cpos);
-            }
-        }*/
         // Now shuffle the ordered sequence
         for (int i = 0; i < Candles.Count; ++i)
         {
@@ -173,7 +140,7 @@ public class CandlePatternGenerator : MonoBehaviour {
     {
         Summoner.SummonSuccess += SummonDemon;
     }
-	
+
 	// Update is called once per frame
 	void Update () {
 	}
@@ -239,9 +206,9 @@ public class CandlePatternGenerator : MonoBehaviour {
         circle_drawing.Apply();
 
         // Create a sprite
-        GameObject drawing = new GameObject("circle_drawing");
-        drawing.transform.SetParent(transform, false);
-        SpriteRenderer draw_sr = drawing.AddComponent<SpriteRenderer>();
+        CircleObject = new GameObject("circle_drawing");
+        CircleObject.transform.SetParent(transform, false);
+        SpriteRenderer draw_sr = CircleObject.AddComponent<SpriteRenderer>();
         draw_sr.sortingLayerName = "Circle";
         draw_sr.sprite = Sprite.Create(circle_drawing, new Rect(0, 0, circle_side, circle_side), Vector2.one * 0.5f, pixel_size);
     }
