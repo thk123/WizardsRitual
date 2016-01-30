@@ -14,6 +14,7 @@ public class Candle : MonoBehaviour {
 
 	public delegate void CandleEventHandler(Candle Sender);
 	public event CandleEventHandler OnCandleLit;
+	public event CandleEventHandler OnCandleExtinguished;
 
 	bool CanUnLight;
 
@@ -49,6 +50,7 @@ public class Candle : MonoBehaviour {
 		{
 			//GameObject.Destroy(gameObject);
 			gameObject.GetComponent<SpriteRenderer>().color = Color.white; 
+			if(OnCandleExtinguished != null) { OnCandleExtinguished(this); }
 		}
 	}
 
