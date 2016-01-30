@@ -162,8 +162,15 @@ public class CandlePatternGenerator : MonoBehaviour {
         if(correct_sequence.Peek() == sender)
         {
             correct_sequence.Dequeue();
-            Candle next_candle = correct_sequence.Peek();
-            HighlightCandle(next_candle);
+            if(correct_sequence.Count > 0)
+            {
+                Candle next_candle = correct_sequence.Peek();
+                HighlightCandle(next_candle);
+            }
+            else
+            {
+                FindObjectOfType<Summoner>().Summon();
+            }
         }
         else
         {
