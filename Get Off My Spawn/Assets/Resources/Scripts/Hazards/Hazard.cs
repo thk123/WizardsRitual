@@ -10,6 +10,8 @@ public class Hazard : MonoBehaviour {
 	private Vector3 TopLeftCorner;
 	private Vector3 BottomRightCorner;
 
+	protected bool FullyEnteredGarden;
+
     void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
@@ -22,8 +24,31 @@ public class Hazard : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	protected virtual void Update () {
+		if(!FullyEnteredGarden)
+		{
+			if(ContainedInBounds())
+			{
+				SetFullyEnteredGarden(true);
+			}
+		}
+		else
+		{
+			if(!ContainedInBounds())
+			{
+				SetFullyEnteredGarden(false);
+			}
+		}
+	}
+
+	protected virtual void SetFullyEnteredGarden(bool Entered)
+	{
+		// If we had entered the garden and we've now left we can destroy
+		if(FullyEnteredGarden && !Entered)
+		{
+			GameObject.Destroy(gameObject);
+		}
+		FullyEnteredGarden = Entered;
 	}
 
 	protected Vector2 PickStartPosition()
@@ -48,6 +73,12 @@ public class Hazard : MonoBehaviour {
 		}
 		
 		return Vector2.zero;
+	}
+
+	protected bool ContainedInBounds()
+	{
+		return transform.position.x >= TopLeftCorner.x && transform.position.x <= BottomRightCorner.x
+				&& transform.position.y >= BottomRightCorner.y && transform.position.y <= TopLeftCorner.y;
 	}
 
 	private void ComputeGameBounds(out Vector3 TopLeft, out Vector3 BottomRight)

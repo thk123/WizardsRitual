@@ -24,7 +24,8 @@ public class WaterBalloon : Hazard {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
+		base.Update();
 		Vector2 DistanceToGoVector = Target - ((Vector2)transform.position);
 		float DistanceToGo = DistanceToGoVector.sqrMagnitude;
 

@@ -7,6 +7,8 @@ public class Football : Hazard {
 
 	public float Speed = 10.0f;
 
+	bool HasPlayerBooted;
+
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
@@ -16,17 +18,34 @@ public class Football : Hazard {
 		float RandomAngle = Random.Range(-45.0f, 45.0f);
 		var Rotator = Quaternion.AngleAxis(RandomAngle, Vector3.forward);
 		MoveDirection = Rotator * (-StartingPosition).normalized;
+
+		HasPlayerBooted = false;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
+		base.Update();
 		rbody.velocity = MoveDirection * Speed;
+	}
+
+	protected override void OnTriggerEnter2D(Collider2D collider)
+	{
+		base.OnTriggerEnter2D(collider);
+
+		if(collider.tag != Utility.CandleTag)
+		{
+			if(collider.tag == Utility.PlayerTag || !HasPlayerBooted)
+			{
+				Vector2 NormalOfCollision = ((Vector2)(transform.position - collider.transform.position)).normalized;
+				MoveDirection = Vector2.Reflect(MoveDirection, NormalOfCollision);
+			}
+		}	
 	}
 
 	protected override void OnPlayerCollision(Collider2D Player)
 	{
 		base.OnPlayerCollision(Player);
-		Vector2 NormalOfCollision = ((Vector2)(transform.position - Player.transform.position)).normalized;
-		MoveDirection = Vector2.Reflect(MoveDirection, NormalOfCollision);
+		print("Oof");
+		HasPlayerBooted = true;
 	}
 }
