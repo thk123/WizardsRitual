@@ -32,7 +32,6 @@ public class Candle : MonoBehaviour {
 		{
 			if(!IsCandleLit)
 			{
-				print("lighting candle");
 				SetCandleLit(true);
 			}
 		}
@@ -50,7 +49,6 @@ public class Candle : MonoBehaviour {
 		{
 			//GameObject.Destroy(gameObject);
 			gameObject.GetComponent<SpriteRenderer>().color = Color.white; 
-			print("Unlighing candle: " + gameObject.GetComponent<SpriteRenderer>().color.ToString());
 		}
 	}
 
