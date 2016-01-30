@@ -1,0 +1,825 @@
+fileFormatVersion: 2
+guid: 3ab73323753c0444ebb5d9c4f4d27b6f
+timeCreated: 1454108081
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: catsprites_0
+    21300002: catsprites_1
+    21300004: catsprites_2
+    21300006: catsprites_3
+    21300008: catsprites_4
+    21300010: catsprites_5
+    21300012: catsprites_6
+    21300014: catsprites_7
+    21300016: catsprites_8
+    21300018: catsprites_9
+    21300020: catsprites_10
+    21300022: catsprites_11
+    21300024: catsprites_12
+    21300026: catsprites_13
+    21300028: catsprites_14
+    21300030: catsprites_15
+    21300032: catsprites_16
+    21300034: catsprites_17
+    21300036: catsprites_18
+    21300038: catsprites_19
+    21300040: catsprites_20
+    21300042: catsprites_21
+    21300044: catsprites_22
+    21300046: catsprites_23
+    21300048: catsprites_24
+    21300050: catsprites_25
+    21300052: catsprites_26
+    21300054: catsprites_27
+    21300056: catsprites_28
+    21300058: catsprites_29
+    21300060: catsprites_30
+    21300062: catsprites_31
+    21300064: catsprites_32
+    21300066: catsprites_33
+    21300068: catsprites_34
+    21300070: catsprites_35
+    21300072: catsprites_36
+    21300074: catsprites_37
+    21300076: catsprites_38
+    21300078: catsprites_39
+    21300080: catsprites_40
+    21300082: catsprites_41
+    21300084: catsprites_42
+    21300086: catsprites_43
+    21300088: catsprites_44
+    21300090: catsprites_45
+    21300092: catsprites_46
+    21300094: catsprites_47
+    21300096: catsprites_48
+    21300098: catsprites_49
+    21300100: catsprites_50
+    21300102: catsprites_51
+    21300104: catsprites_52
+    21300106: catsprites_53
+    21300108: catsprites_54
+    21300110: catsprites_55
+    21300112: catsprites_56
+    21300114: catsprites_57
+    21300116: catsprites_58
+    21300118: catsprites_59
+    21300120: catsprites_60
+    21300122: catsprites_61
+    21300124: catsprites_62
+    21300126: catsprites_63
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: catsprites_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 58
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_1
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 58
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 58
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_3
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 58
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_4
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 58
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 58
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 58
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_7
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 58
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_8
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 58
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_9
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 58
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_10
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 58
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_11
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 58
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_12
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 58
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_13
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 58
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_14
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 58
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_15
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 58
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_17
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_18
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 38
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_19
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 38
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_21
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_22
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_23
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 38
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_24
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 38
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_25
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_26
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_27
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_28
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 38
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_29
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 38
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_30
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_31
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_32
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_33
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 38
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_34
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 38
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_35
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 38
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_36
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 17
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_37
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 17
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_38
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 17
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_39
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 17
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_40
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 17
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_41
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 17
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_42
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 17
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_43
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 17
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_44
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 17
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_45
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 17
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_46
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 17
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_47
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 17
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_48
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 17
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_49
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 17
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_50
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 17
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_51
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 17
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_52
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 17
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_53
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 17
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_54
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 17
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_55
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 17
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_56
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 1
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_57
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 0
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_58
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 2
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_59
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_60
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 2
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_61
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 0
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_62
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 2
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: catsprites_63
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 0
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
