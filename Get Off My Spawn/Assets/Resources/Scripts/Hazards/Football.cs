@@ -9,13 +9,15 @@ public class Football : Hazard {
 
 	bool HasPlayerBooted;
 
+	public float AngleRange = 45.0f;
+
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
-		Vector2 StartingPosition = Camera.main.ScreenToWorldPoint(PickStartPosition());
+		Vector2 StartingPosition = PickStartPosition();
 		transform.position = StartingPosition;
 
-		float RandomAngle = Random.Range(-45.0f, 45.0f);
+		float RandomAngle = Random.Range(-AngleRange, AngleRange);
 		var Rotator = Quaternion.AngleAxis(RandomAngle, Vector3.forward);
 		MoveDirection = Rotator * ((-StartingPosition).normalized);
 		Debug.DrawLine(StartingPosition, StartingPosition + 5.0f * MoveDirection, Color.white, 1.0f);

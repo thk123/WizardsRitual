@@ -56,23 +56,30 @@ public class Hazard : MonoBehaviour {
 		int Side =Random.Range(0, 4);
 		int xPos = Random.Range(0, Screen.width);	
 		int yPos = Random.Range(0, Screen.height);
+
+		Vector2 ScreenSpaceVector = Vector2.zero;
+
 		switch(Side)
 		{
 			case 0:
-				return new Vector2(xPos, 0);
+				ScreenSpaceVector = new Vector2(xPos, 0);
+				break;
 
 			case 1:
-				return new Vector2(xPos, Screen.height);
+				ScreenSpaceVector = new Vector2(xPos, Screen.height);
+				break;
 
 			case 2:
-				return new Vector2(0, yPos);
+				ScreenSpaceVector = new Vector2(0, yPos);
+				break;
 
 			case 3:
-				return new Vector2(Screen.width, yPos);
+				ScreenSpaceVector = new Vector2(Screen.width, yPos);
+				break;
 
 		}
 		
-		return Vector2.zero;
+		return Camera.main.ScreenToWorldPoint(ScreenSpaceVector);
 	}
 
 	protected bool ContainedInBounds()

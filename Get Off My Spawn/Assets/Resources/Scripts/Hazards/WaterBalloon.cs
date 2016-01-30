@@ -24,7 +24,7 @@ public class WaterBalloon : Hazard {
 		if(TargetCandle != null)
 		{
 			Target = GetTargetPosition(TargetCandle);
-			Vector2 StartingPosition = Camera.main.ScreenToWorldPoint(PickStartPosition());
+			Vector2 StartingPosition = PickStartPosition();
 			transform.position = StartingPosition;
 		}
 		else
