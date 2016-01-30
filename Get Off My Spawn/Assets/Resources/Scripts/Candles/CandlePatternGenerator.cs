@@ -229,6 +229,7 @@ public class CandlePatternGenerator : MonoBehaviour {
         GameObject drawing = new GameObject("circle_drawing");
         drawing.transform.SetParent(transform, false);
         SpriteRenderer draw_sr = drawing.AddComponent<SpriteRenderer>();
+        draw_sr.sortingLayerName = "Circle";
         draw_sr.sprite = Sprite.Create(circle_drawing, new Rect(0, 0, circle_side, circle_side), Vector2.one * 0.5f, pixel_size);
     }
 
