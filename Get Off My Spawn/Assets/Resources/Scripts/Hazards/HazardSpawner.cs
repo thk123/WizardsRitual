@@ -13,6 +13,7 @@ public class HazardSpawner : MonoBehaviour {
 	public float FrequencyVariance;
 	public float MinGap = 0.1f;
 
+	public int MaxNumberAcrossAllHazards = 4;
 
 	// Use this for initialization
 	void Start () {       
@@ -35,7 +36,10 @@ public class HazardSpawner : MonoBehaviour {
 			float NextPause = Mathf.Max(Utility.NextGaussianDouble(MeanFrequency, FrequencyVariance), MinGap);
 			yield return new WaitForSeconds(NextPause);
 	
-			SpawnNextObstacle();
+			if(CountNumberOfHazard(typeof(Hazard)) < MaxNumberAcrossAllHazards)
+			{
+				SpawnNextObstacle();
+			}
 		}
 	}
 
@@ -60,7 +64,7 @@ public class HazardSpawner : MonoBehaviour {
 	
         	Type TypeOfHazard = GetTypeOfHazard(PotentialHazards[RandomObstanceIndex].prefab);
         	int NumberAlready = CountNumberOfHazard(TypeOfHazard);
-        	
+
         	if(NumberAlready < PotentialHazards[RandomObstanceIndex].MaxNumberOnScreen)
 			{
 				HazardToSpawn = PotentialHazards[RandomObstanceIndex].prefab;
