@@ -14,6 +14,7 @@ public class Candle : MonoBehaviour {
 
 	public delegate void CandleEventHandler(Candle Sender);
 	public event CandleEventHandler OnCandleLit;
+	public event CandleEventHandler OnCandleExtinguished;
 
 	bool CanUnLight;
 
@@ -51,6 +52,7 @@ public class Candle : MonoBehaviour {
 		else
 		{
             candle_flame.enabled = false;
+			if(OnCandleExtinguished != null) { OnCandleExtinguished(this); }
         }
     }
 
