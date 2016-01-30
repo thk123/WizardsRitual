@@ -20,6 +20,5 @@ public class SumonQualityController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		slider.value = Summoner.SummonQuality;
 	}
 }
