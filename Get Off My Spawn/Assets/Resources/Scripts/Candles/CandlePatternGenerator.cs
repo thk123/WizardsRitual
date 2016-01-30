@@ -83,6 +83,7 @@ public class CandlePatternGenerator : MonoBehaviour {
                 candle.transform.localPosition = (Vector3)pattern[circle_index][j];
                 candle.SetCandlePosition(new candle_pos(circle_index, j));
                 candle.OnCandleLit += Candle_OnCandleLit;
+                candle.OnCandleExtinguished += Candle_OnCandleExtinguished;
                 Candles.Add(candle);
 
             }
@@ -252,7 +253,22 @@ public class CandlePatternGenerator : MonoBehaviour {
         }
 
         if (correct_sequence.Count == 0)
+        {
             Summoner.sngl.Summon();
+            // Also hide highligher
+            if (CurrentMarker != null)
+                CurrentMarker.SetActive(false);
+        }
+    }
+
+    void Candle_OnCandleExtinguished(Candle sender)
+    {
+        // Damn! Gotta put it back in place!
+        // Also punish the player
+
+        correct_sequence.Add(sender);
+        Summoner.sngl.ExtinguishedCandle();
+
     }
 
     void HighlightCandle(Candle next_candle)

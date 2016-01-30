@@ -63,6 +63,11 @@ public class WaterBalloon : Hazard {
 		{
 			StartCoroutine(ExplodeWaterBalloon());
 		}
+        // Did we just hit a candle?
+        if (collid.tag == "Candle")
+        {
+            collid.GetComponent<Candle>().SetCandleLit(false);
+        }
 	}
 
 	private IEnumerator ExplodeWaterBalloon()
