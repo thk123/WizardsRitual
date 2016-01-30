@@ -49,7 +49,16 @@ public class Summoner : MonoBehaviour {
         }
     }
 
-	public void Summon()
+    public void ExtinguishedCandle()
+    {
+        foreach (ISumonQualityPenalty pen in Penalties)
+        {
+            if (pen is ExtinguishedCandlePenalty)
+                ((ExtinguishedCandlePenalty)pen).ExtinguishedCandle();
+        }
+    }
+
+    public void Summon()
 	{
 		print("SUMMONING A LEVEL " + (SummonQuality * 100.0f).ToString("0") + " DEMON!");
 	}
