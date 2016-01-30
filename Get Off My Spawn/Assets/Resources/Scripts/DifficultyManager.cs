@@ -1,25 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DifficultyManager : MonoBehaviour {
 
-	public DifficultyScriptableObject StartingDifficulty;
+	//lic DifficultyScriptableObject StartingDifficulty;
 
 	public Summoner summoner;
 	public CandlePatternGenerator PatternGenerator;
 	public HazardSpawner hazard;
 
+	public List<DifficultyScriptableObject> DifficultySequence;
+
 	// Use this for initialization
-	void Awake () {
-		if(StartingDifficulty != null)
-		{
-			LoadDifficulty(StartingDifficulty);
-		}
+	void Start () {
+		NextDifficulty();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void NextDifficulty()
+	{
+		if(DifficultySequence.Count > 0)
+		{
+			LoadDifficulty(DifficultySequence[0]);
+			DifficultySequence.RemoveAt(0);
+		}
 	}
 
 	public void LoadDifficulty(DifficultyScriptableObject DifficultyToLoad)
@@ -36,7 +45,7 @@ public class DifficultyManager : MonoBehaviour {
 			PatternGenerator.tot_radius = DifficultyToLoad.Tot_radius;
 
 			// HAZARD CODE GOES HERE
-
+			PatternGenerator.Restart();
 		}
 	}
 }
