@@ -168,7 +168,11 @@ public class CandlePatternGenerator : MonoBehaviour {
         else
         {
             sender.SetCandleLit(false);
-            // TODO: knock some quality off the summoning
+            WrongCandlePenalty penalty = FindObjectOfType<WrongCandlePenalty>();
+            if(penalty != null)
+            {
+                penalty.WrongCandleLit();
+            }
         }
     }
 
