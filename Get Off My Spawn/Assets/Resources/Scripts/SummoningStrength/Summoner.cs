@@ -8,7 +8,7 @@ public interface ISumonQualityPenalty
 }
 
 public class Summoner : MonoBehaviour {
-
+    
     public static Summoner sngl;
 	List<ISumonQualityPenalty> Penalties; 
 
