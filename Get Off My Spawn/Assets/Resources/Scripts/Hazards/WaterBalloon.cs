@@ -14,7 +14,8 @@ public class WaterBalloon : Hazard {
 	public float ArrivalDistance = 1.0f;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+		base.Start();
 		Target = Camera.main.ScreenToWorldPoint(PickTarget());
 		Vector2 StartingPosition = Camera.main.ScreenToWorldPoint(PickStartPosition());
 		transform.position = StartingPosition;
@@ -23,7 +24,8 @@ public class WaterBalloon : Hazard {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected override void Update () {
+		base.Update();
 		Vector2 DistanceToGoVector = Target - ((Vector2)transform.position);
 		float DistanceToGo = DistanceToGoVector.sqrMagnitude;
 
@@ -51,8 +53,10 @@ public class WaterBalloon : Hazard {
 	protected override void OnTriggerEnter2D(Collider2D collid)
 	{
 		base.OnTriggerEnter2D(collid);
-
-		StartCoroutine(ExplodeWaterBalloon());
+		if(FullyEnteredGarden)
+		{
+			StartCoroutine(ExplodeWaterBalloon());
+		}
 	}
 
 	private IEnumerator ExplodeWaterBalloon()
