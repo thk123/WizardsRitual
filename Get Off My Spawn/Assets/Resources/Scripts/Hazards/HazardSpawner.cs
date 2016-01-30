@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
+
 using System.Collections;
 using System.Collections.Generic;
+
+using Type = System.Type;
 
 public class HazardSpawner : MonoBehaviour {
 
@@ -56,6 +59,28 @@ public class HazardSpawner : MonoBehaviour {
                 break;
             RandomObstanceIndex++;
         }
-		Instantiate(Hazards[RandomObstanceIndex].prefab);
+
+        Type TypeOfHazard = GetTypeOfHazard(Hazards[RandomObstanceIndex].prefab);
+        int NumberAlready = CountNumberOfHazard(TypeOfHazard);
+
+        if(NumberAlready < Hazards[RandomObstanceIndex].MaxNumberOnScreen)
+		{
+			Instantiate(Hazards[RandomObstanceIndex].prefab);
+		}
+		else
+		{
+			// we skip this round - there are already too many
+		}
+	}
+
+	Type GetTypeOfHazard(Hazard HazardPrefab)
+	{
+		return HazardPrefab.GetType();
+	}
+
+	int CountNumberOfHazard(Type HazardType)
+	{
+		var HazardsOfType = GameObject.FindObjectsOfType(HazardType);
+		return HazardsOfType.Length;
 	}
 }

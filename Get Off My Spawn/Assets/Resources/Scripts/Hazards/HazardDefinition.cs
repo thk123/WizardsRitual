@@ -6,5 +6,6 @@ public class HazardDefinition : System.Object {
 
     public Hazard prefab;
     public float probability;
+    public int MaxNumberOnScreen;
 
 }
