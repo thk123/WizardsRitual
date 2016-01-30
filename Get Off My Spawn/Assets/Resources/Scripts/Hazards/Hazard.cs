@@ -119,8 +119,6 @@ public class Hazard : MonoBehaviour {
 
 	protected virtual void OnTriggerEnter2D(Collider2D collid)
 	{
-		GetComponent<AudioSource>().Play();
-
 		if(collid.tag == Utility.PlayerTag)
 		{
 			OnPlayerCollision(collid);

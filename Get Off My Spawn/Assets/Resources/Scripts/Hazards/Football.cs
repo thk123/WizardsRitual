@@ -41,6 +41,10 @@ public class Football : Hazard {
 			{
 				Vector2 NormalOfCollision = ((Vector2)(transform.position - collider.transform.position)).normalized;
 				MoveDirection = Vector2.Reflect(MoveDirection, NormalOfCollision);
+				if(!GetComponent<AudioSource>().isPlaying)
+				{
+					GetComponent<AudioSource>().Play();
+				}
 			}
 		}	
 	}

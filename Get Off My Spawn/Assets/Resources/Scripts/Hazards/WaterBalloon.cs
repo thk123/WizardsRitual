@@ -114,6 +114,7 @@ public class WaterBalloon : Hazard {
 		}
 
 		AudioSource AudioEffect = GetComponent<AudioSource>();
+		AudioEffect.Play();
 		while(AudioEffect.isPlaying)
 		{
 			yield return null;
