@@ -25,26 +25,29 @@ public class CandlePatternGenerator : MonoBehaviour {
     public int candle_num = 5;
     public int circle_num = 1;
     public Color circle_color;
-    public float circle_width;
-    public Material circle_material;
+    //public float circle_width;
+    //public Material circle_material;
     public Candle candle_prefab;
+    public int circle_side;
 
+    int[] circle_sizes;
     List<List<Vector2>> pattern;
-    LineRenderer[] circle_rends;
+    //LineRenderer[] circle_rends;
     List<Candle> correct_sequence;
 
     List<Candle> Candles;
 
     public GameObject NextCandlePrefab;
     GameObject CurrentMarker;
+    Texture2D circle_drawing;
 
 	// Use this for initialization
 	void Awake () {
 
         Candles = new List<Candle>();
 
-        int[] circle_sizes = new int[circle_num];
-        circle_rends = new LineRenderer[circle_num];
+        circle_sizes = new int[circle_num];
+        //circle_rends = new LineRenderer[circle_num];
 
         // Assign the sizes, from the outermost, going inwards
         int candles = candle_num;
@@ -85,6 +88,7 @@ public class CandlePatternGenerator : MonoBehaviour {
             }
             
             // Now draw the circle
+            /*
             GameObject circle_draw = new GameObject("circle_" + (circle_index+1));
             circle_draw.transform.SetParent(transform);
             circle_draw.transform.localPosition = Vector3.zero;
@@ -102,6 +106,7 @@ public class CandlePatternGenerator : MonoBehaviour {
                 else
                     circle_rends[circle_index].SetPosition(j, (Vector3)pattern[circle_index][0]);
             }
+            */
 
         }
 
@@ -151,11 +156,82 @@ public class CandlePatternGenerator : MonoBehaviour {
         correct_sequence = new List<Candle>(Candles);
 
         HighlightCandle(correct_sequence[0]);
+
+        // Now draw the circle
+        DrawCircle();
     }
 	
 	// Update is called once per frame
 	void Update () {
 	}
+
+    void DrawCircle()
+    {
+        float pixel_size = circle_side / (2.0f * tot_radius);
+        Color[] color_array = new Color[circle_side*circle_side];
+
+        circle_drawing = new Texture2D(circle_side, circle_side);
+        circle_drawing.alphaIsTransparency = true;
+        circle_drawing.filterMode = FilterMode.Point;
+        // Start by clearing
+        for (int i = 0; i < circle_side*circle_side; ++i)
+        {
+            color_array[i] = Color.clear;
+        }
+        // Now draw the circle
+        for (int circle_i = 0; circle_i < circle_num; ++circle_i)
+        {
+            if (circle_sizes[circle_i] < 2)
+                continue;
+            // Set all vertices as untouched
+            bool[] verts = new bool[circle_sizes[circle_i]];
+            // Decide a random "step"
+            int step = Random.Range(1, circle_sizes[circle_i] / 2);
+            int curr_vert = 0;
+            while (curr_vert > -1)
+            {
+                int next_vert = (curr_vert + step)%circle_sizes[circle_i];
+                if (!verts[next_vert])
+                {
+                    // Draw line!
+                    float tstep = 1.0f/((pattern[circle_i][curr_vert] - pattern[circle_i][next_vert]).magnitude*pixel_size);
+                    for (float t = 0.0f; t < 1.0f; t += tstep)
+                    {
+                        Vector2 tpos = (Vector2.Lerp(pattern[circle_i][curr_vert], pattern[circle_i][next_vert], t) + Vector2.one*tot_radius)*pixel_size;
+                        int[] xpos = { Mathf.FloorToInt(tpos.x), Mathf.FloorToInt(tpos.x), Mathf.CeilToInt(tpos.x), Mathf.CeilToInt(tpos.x) };
+                        int[] ypos = { Mathf.FloorToInt(tpos.y), Mathf.CeilToInt(tpos.y), Mathf.FloorToInt(tpos.y), Mathf.CeilToInt(tpos.y) };
+                        for (int sq_i = 0; sq_i < 4; ++sq_i)
+                        {
+                            // Calculate color!
+                            Color px_col = circle_color;
+                            px_col.a = px_col.a*Mathf.Clamp01(1.0f - (new Vector2(xpos[sq_i], ypos[sq_i]) - tpos).magnitude/2.0f);
+                            int px_i = xpos[sq_i] + ypos[sq_i] * circle_side;
+                            if (px_i >= 0 && px_i < color_array.Length)
+                                color_array[px_i] = px_col;
+                        }
+                    }
+                    verts[next_vert] = true;
+                    curr_vert = next_vert;
+                }
+                else
+                {
+                    curr_vert = System.Array.FindIndex<bool>(verts, b => b == false);
+                }
+
+                //curr_vert = -1;
+            }
+        }
+
+        circle_drawing.SetPixels(color_array);
+        circle_drawing.Apply();
+
+        // Create a sprite
+        GameObject drawing = new GameObject("circle_drawing");
+        drawing.transform.SetParent(transform, false);
+        SpriteRenderer draw_sr = drawing.AddComponent<SpriteRenderer>();
+        draw_sr.sortingLayerName = "Circle";
+        draw_sr.sprite = Sprite.Create(circle_drawing, new Rect(0, 0, circle_side, circle_side), Vector2.one * 0.5f, pixel_size);
+    }
 
     void Candle_OnCandleLit(Candle sender)
     {
@@ -166,17 +242,17 @@ public class CandlePatternGenerator : MonoBehaviour {
             {
                 HighlightCandle(correct_sequence[0]);
             }
-            else
-            {
-                FindObjectOfType<Summoner>().Summon();
-            }
         }
         else
         {
             int i = correct_sequence.FindIndex(c => c == sender);
-            sender.SetCandleLit(false);
+            // Remove the candle from the sequence, at this point...
+            correct_sequence.RemoveAt(i);
             Summoner.sngl.WrongCandleLit();
         }
+
+        if (correct_sequence.Count == 0)
+            Summoner.sngl.Summon();
     }
 
     void HighlightCandle(Candle next_candle)
