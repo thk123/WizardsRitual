@@ -17,10 +17,13 @@ public class WaterBalloon : Hazard {
 
 	public float ArrivalDistance = 1.0f;
 
+	bool WaterBalloonExploded;
+
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
 		Candle TargetCandle = PickTarget();
+		WaterBalloonExploded = false;
 		if(TargetCandle != null)
 		{
 			Target = GetTargetPosition(TargetCandle);
@@ -83,20 +86,25 @@ public class WaterBalloon : Hazard {
 	protected override void OnTriggerEnter2D(Collider2D collid)
 	{
 		base.OnTriggerEnter2D(collid);
-		if(FullyEnteredGarden)
+
+		if(!WaterBalloonExploded)
 		{
-			StartCoroutine(ExplodeWaterBalloon());
-		}
-        // Did we just hit a candle?
-        if (collid.tag == "Candle")
-        {
-            collid.GetComponent<Candle>().SetCandleLit(false);
-        }
+			if(FullyEnteredGarden)
+			{
+				StartCoroutine(ExplodeWaterBalloon());
+			}
+        	// Did we just hit a candle?
+        	if (collid.tag == "Candle")
+        	{
+        	    collid.GetComponent<Candle>().SetCandleLit(false);
+        	}
+    	}
 	}
 
 	private IEnumerator ExplodeWaterBalloon()
 	{
 		Speed = 0.0f;
+		WaterBalloonExploded = true;
 		rbody.velocity = Vector2.zero;
 
 		Animator balloonAnimator = GetComponent<Animator>();
