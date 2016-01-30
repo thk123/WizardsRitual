@@ -29,6 +29,7 @@ public class Summoner : MonoBehaviour {
 		foreach(ISumonQualityPenalty Penalty in gameObject.GetComponents<ISumonQualityPenalty>())
 		{
 			SummonQuality -= Penalty.GetCurrentPenalty();	
+			SummonQuality = Mathf.Clamp(SummonQuality, 0.0f, 1.0f);
 		}
 	}
 
