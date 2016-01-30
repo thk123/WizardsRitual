@@ -7,7 +7,7 @@ public class Newspaper : Hazard {
 
 	public float Speed = 6.0f;
 
-	public float AngleRange = 45.0f;
+	public float AngleRange = 20.0f;
 
 	// Use this for initialization
 	protected override void Start () {
