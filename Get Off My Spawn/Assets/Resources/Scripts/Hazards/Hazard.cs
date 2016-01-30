@@ -14,4 +14,9 @@ public class Hazard : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	void OnTriggerEnter2D(Collider2D collid)
+	{
+		GetComponent<AudioSource>().Play();
+	}
 }
