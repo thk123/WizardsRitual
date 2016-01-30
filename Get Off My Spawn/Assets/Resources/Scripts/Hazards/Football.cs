@@ -17,7 +17,8 @@ public class Football : Hazard {
 
 		float RandomAngle = Random.Range(-45.0f, 45.0f);
 		var Rotator = Quaternion.AngleAxis(RandomAngle, Vector3.forward);
-		MoveDirection = Rotator * (-StartingPosition).normalized;
+		MoveDirection = Rotator * ((-StartingPosition).normalized);
+		Debug.DrawLine(StartingPosition, StartingPosition + 5.0f * MoveDirection, Color.white, 1.0f);
 
 		HasPlayerBooted = false;
 	}
@@ -32,7 +33,7 @@ public class Football : Hazard {
 	{
 		base.OnTriggerEnter2D(collider);
 
-		if(collider.tag != Utility.CandleTag)
+		if(collider.tag != Utility.CandleTag && FullyEnteredGarden)
 		{
 			if(collider.tag == Utility.PlayerTag || !HasPlayerBooted)
 			{
