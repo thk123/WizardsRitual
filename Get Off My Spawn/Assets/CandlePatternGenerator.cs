@@ -35,6 +35,9 @@ public class CandlePatternGenerator : MonoBehaviour {
 
     List<Candle> Candles;
 
+    public GameObject NextCandlePrefab;
+    GameObject CurrentMarker;
+
 	// Use this for initialization
 	void Awake () {
 
@@ -146,6 +149,8 @@ public class CandlePatternGenerator : MonoBehaviour {
             Candles[iswap] = cpos;
         }
         correct_sequence = new Queue<Candle>(Candles);
+
+        HighlightCandle(correct_sequence.Peek());
     }
 	
 	// Update is called once per frame
@@ -154,17 +159,30 @@ public class CandlePatternGenerator : MonoBehaviour {
 
     void Candle_OnCandleLit(Candle sender)
     {
-        print("Candle lit: " + sender.CandlePosition.ToString());
         if(correct_sequence.Peek() == sender)
         {
-            print("    The correct candle");
-            Candle next_candle = correct_sequence.Dequeue();
+            correct_sequence.Dequeue();
+            Candle next_candle = correct_sequence.Peek();
+            HighlightCandle(next_candle);
         }
         else
         {
-            print("    Incorrect candle");
             sender.SetCandleLit(false);
             // TODO: knock some quality off the summoning
         }
     }
+
+    void HighlightCandle(Candle next_candle)
+    {
+        if(CurrentMarker == null)
+        {
+            CurrentMarker = Instantiate(NextCandlePrefab);    
+        }
+        CurrentMarker.transform.parent = next_candle.transform;
+        CurrentMarker.transform.localPosition = Vector3.zero;
+        
+    }
 }
+
+
+

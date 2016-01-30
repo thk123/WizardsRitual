@@ -63,9 +63,4 @@ public class Candle : MonoBehaviour {
 	{
 		CandlePosition = Position;
 	}
-
-	public void HighlightCandle()
-	{
-		print("ME!");
-	}
 }
