@@ -248,16 +248,18 @@ public class CandlePatternGenerator : MonoBehaviour {
         {
             int i = correct_sequence.FindIndex(c => c == sender);
             // Remove the candle from the sequence, at this point...
+            if (i < 0)
+                return; 
             correct_sequence.RemoveAt(i);
             Summoner.sngl.WrongCandleLit();
         }
 
         if (correct_sequence.Count == 0)
         {
-            Summoner.sngl.Summon();
             // Also hide highligher
             if (CurrentMarker != null)
                 CurrentMarker.SetActive(false);
+            Summoner.sngl.Summon();
         }
     }
 

@@ -46,6 +46,8 @@ public class Candle : MonoBehaviour {
 
 	public void SetCandleLit(bool IsLit)
 	{
+        if (IsLit == IsCandleLit)
+            return;
 		IsCandleLit = IsLit;
 		if(IsCandleLit)
 		{
