@@ -7,6 +7,8 @@ public class Hazard : MonoBehaviour {
 
 	protected Rigidbody2D rbody;
 
+	private Vector3 TopLeftCorner;
+	private Vector3 BottomRightCorner;
 
     void Awake()
     {
@@ -14,13 +16,14 @@ public class Hazard : MonoBehaviour {
     }
 
 	// Use this for initialization
-	void Start () {
-	
+	protected virtual void Start () {
+		FullyEnteredGarden = false;
+		ComputeGameBounds(out TopLeftCorner, out BottomRightCorner);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	protected Vector2 PickStartPosition()
@@ -45,6 +48,35 @@ public class Hazard : MonoBehaviour {
 		}
 		
 		return Vector2.zero;
+	}
+
+	private void ComputeGameBounds(out Vector3 TopLeft, out Vector3 BottomRight)
+	{
+		GameObject[] Bounds = GameObject.FindGameObjectsWithTag(Utility.BoundsTag);
+		float LeftValue = Mathf.Infinity;
+		float RightValue = -Mathf.Infinity;
+
+		float TopValue = -Mathf.Infinity;
+		float BottomValue = Mathf.Infinity;
+		foreach(GameObject boundingObject in Bounds)
+		{
+			Bounds bounds = boundingObject.GetComponent<Collider2D>().bounds;
+
+			// The horizontal is biggger than the vertical so is a top/bottom bound
+			if(bounds.extents.x > bounds.extents.y)
+			{
+				TopValue = Mathf.Max(bounds.min.y, TopValue);
+				BottomValue = Mathf.Min(bounds.max.y, BottomValue);
+			}
+			else // the vertical is bigger than the horizontal, so is a left/right bound
+			{
+				LeftValue = Mathf.Min(bounds.max.x, LeftValue);
+				RightValue = Mathf.Max(bounds.min.x, RightValue);
+			}
+		}
+
+		TopLeft = new Vector3(LeftValue, TopValue, 0.0f);
+		BottomRight = new Vector3(RightValue, BottomValue, 0.0f);
 	}
 
 	protected virtual void OnTriggerEnter2D(Collider2D collid)

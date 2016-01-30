@@ -8,7 +8,8 @@ public class Football : Hazard {
 	public float Speed = 10.0f;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+		base.Start();
 		Vector2 StartingPosition = Camera.main.ScreenToWorldPoint(PickStartPosition());
 		transform.position = StartingPosition;
 

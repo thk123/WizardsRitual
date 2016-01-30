@@ -14,7 +14,8 @@ public class WaterBalloon : Hazard {
 	public float ArrivalDistance = 1.0f;
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+		base.Start();
 		Target = Camera.main.ScreenToWorldPoint(PickTarget());
 		Vector2 StartingPosition = Camera.main.ScreenToWorldPoint(PickStartPosition());
 		transform.position = StartingPosition;
