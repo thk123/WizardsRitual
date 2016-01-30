@@ -13,16 +13,9 @@ public class HazardSpawner : MonoBehaviour {
 	public float FrequencyVariance;
 	public float MinGap = 0.1f;
 
-    float prob_norm;
 
 	// Use this for initialization
-	void Start () {
-        // Calculate probability normalization factor
-        prob_norm = 0.0f;
-        foreach (HazardDefinition hdef in Hazards)
-        {
-            prob_norm += hdef.probability;
-        }
+	void Start () {       
 
 		if(Hazards.Count > 0)
 		{
@@ -49,27 +42,38 @@ public class HazardSpawner : MonoBehaviour {
 	void SpawnNextObstacle()
 	{
         // Pick which one
-        float cum_prob = 1e-9f; // Just a safety measure
-        float randomPicker = Random.value * prob_norm;
-		int RandomObstanceIndex = 0;
-        foreach (HazardDefinition hdef in Hazards)
+        Hazard HazardToSpawn = null;
+        List<HazardDefinition> PotentialHazards = new List<HazardDefinition>(Hazards);
+
+        while(HazardToSpawn == null && PotentialHazards.Count > 0)
         {
-            cum_prob += hdef.probability;
-            if (cum_prob > randomPicker)
-                break;
-            RandomObstanceIndex++;
-        }
-
-        Type TypeOfHazard = GetTypeOfHazard(Hazards[RandomObstanceIndex].prefab);
-        int NumberAlready = CountNumberOfHazard(TypeOfHazard);
-
-        if(NumberAlready < Hazards[RandomObstanceIndex].MaxNumberOnScreen)
+        	float cum_prob = 1e-9f; // Just a safety measure
+        	float randomPicker = Random.value * ComputeTotalProbability(PotentialHazards);
+			int RandomObstanceIndex = 0;
+        	foreach (HazardDefinition hdef in PotentialHazards)
+        	{
+        	    cum_prob += hdef.probability;
+        	    if (cum_prob > randomPicker)
+        	        break;
+        	    RandomObstanceIndex++;
+        	}
+	
+        	Type TypeOfHazard = GetTypeOfHazard(PotentialHazards[RandomObstanceIndex].prefab);
+        	int NumberAlready = CountNumberOfHazard(TypeOfHazard);
+        	
+        	if(NumberAlready < PotentialHazards[RandomObstanceIndex].MaxNumberOnScreen)
+			{
+				HazardToSpawn = PotentialHazards[RandomObstanceIndex].prefab;
+			}
+			else
+			{
+				PotentialHazards.RemoveAt(RandomObstanceIndex);
+				// we skip this round - there are already too many
+			}
+		} 
+		if(HazardToSpawn != null)
 		{
-			Instantiate(Hazards[RandomObstanceIndex].prefab);
-		}
-		else
-		{
-			// we skip this round - there are already too many
+			Instantiate(HazardToSpawn);
 		}
 	}
 
@@ -82,5 +86,16 @@ public class HazardSpawner : MonoBehaviour {
 	{
 		var HazardsOfType = GameObject.FindObjectsOfType(HazardType);
 		return HazardsOfType.Length;
+	}
+
+	float ComputeTotalProbability(IEnumerable<HazardDefinition> ActiveHazards)
+	{
+		float prob_norm = 0.0f;
+		foreach (HazardDefinition hdef in ActiveHazards)
+        {
+            prob_norm += hdef.probability;
+        }
+
+        return prob_norm;
 	}
 }
