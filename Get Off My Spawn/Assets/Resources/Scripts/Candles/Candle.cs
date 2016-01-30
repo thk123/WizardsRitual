@@ -6,6 +6,17 @@ public class Candle : MonoBehaviour {
 	// Use this for initialization
 	bool IsCandleLit;
 
+	public CandlePatternGenerator.candle_pos CandlePosition
+	{
+		get;
+		private set;
+	}
+
+	public delegate void CandleEventHandler(Candle Sender);
+	public event CandleEventHandler OnCandleLit;
+
+	bool CanUnLight;
+
 	void Start () {
 		IsCandleLit = false;
 	}
@@ -32,15 +43,22 @@ public class Candle : MonoBehaviour {
 		if(IsCandleLit)
 		{
 			gameObject.GetComponent<SpriteRenderer>().color = Color.yellow; 
+			if(OnCandleLit != null) { OnCandleLit(this); }
 		}
 		else
 		{
-			gameObject.GetComponent<SpriteRenderer>().color = Color.white; 	
+			//GameObject.Destroy(gameObject);
+			gameObject.GetComponent<SpriteRenderer>().color = Color.white; 
 		}
 	}
 
 	public bool GetIsCandleLit()
 	{
 		return IsCandleLit;
+	}
+
+	public void SetCandlePosition(CandlePatternGenerator.candle_pos Position)
+	{
+		CandlePosition = Position;
 	}
 }
