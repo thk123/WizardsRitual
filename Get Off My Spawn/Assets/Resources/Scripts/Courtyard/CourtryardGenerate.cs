@@ -75,6 +75,7 @@ public class CourtryardGenerate : MonoBehaviour {
         GameObject lawn_obj = new GameObject("Lawn");
         lawn_obj.transform.SetParent(transform, false);
         SpriteRenderer srend = lawn_obj.AddComponent<SpriteRenderer>();
+        print(lawn.height / (2.2f * Camera.main.orthographicSize));
         srend.sprite = Sprite.Create(lawn, new Rect(0, 0, lawn.width, lawn.height), Vector2.one * 0.5f, lawn.height/(2.2f*Camera.main.orthographicSize));
         srend.sortingLayerName = "Lawn";
     }
