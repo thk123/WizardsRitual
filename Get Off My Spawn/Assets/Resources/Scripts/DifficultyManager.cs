@@ -46,6 +46,8 @@ public class DifficultyManager : MonoBehaviour {
 
 			// HAZARD CODE GOES HERE
 			PatternGenerator.Restart();
+			hazard.Restart();
+			summoner.Restart();
 		}
 	}
 }

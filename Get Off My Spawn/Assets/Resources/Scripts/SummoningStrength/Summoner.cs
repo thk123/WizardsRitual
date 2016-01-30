@@ -28,10 +28,17 @@ public class Summoner : MonoBehaviour {
     }
 
 	void Start () {
-		SummonQuality = 1.0f;
+		
 		Penalties = new List<ISumonQualityPenalty>();
 		Penalties.AddRange(gameObject.GetComponents<ISumonQualityPenalty>());
+
+        Restart();
 	}
+
+    public void Restart()
+    {
+        SummonQuality = 1.0f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
