@@ -240,6 +240,7 @@ public class CandlePatternGenerator : MonoBehaviour {
         {
             sender.CorrectCandle();
             correct_sequence.RemoveAt(0);
+            Summoner.sngl.CorrectCandle();
             if(correct_sequence.Count > 0)
             {
                 HighlightCandle(correct_sequence[0]);

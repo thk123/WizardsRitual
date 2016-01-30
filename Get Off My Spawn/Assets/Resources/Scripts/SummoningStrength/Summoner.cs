@@ -36,7 +36,7 @@ public class Summoner : MonoBehaviour {
 		foreach(ISumonQualityPenalty Penalty in gameObject.GetComponents<ISumonQualityPenalty>())
 		{
 			SummonQuality -= Penalty.GetCurrentPenalty();	
-			SummonQuality = Mathf.Clamp(SummonQuality, 0.0f, 1.0f);
+			SummonQuality = Mathf.Clamp01(SummonQuality);
 		}
 	}
 
@@ -57,6 +57,15 @@ public class Summoner : MonoBehaviour {
         {
             if (pen is ExtinguishedCandlePenalty)
                 ((ExtinguishedCandlePenalty)pen).ExtinguishedCandle();
+        }
+    }
+
+    public void CorrectCandle()
+    {
+        foreach (ISumonQualityPenalty pen in Penalties)
+        {
+            if (pen is CorrectCandleBonus)
+                ((CorrectCandleBonus)pen).CorrectCandle();
         }
     }
 
