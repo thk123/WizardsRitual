@@ -74,6 +74,7 @@ public class Summoner : MonoBehaviour {
     public void Summon()
 	{
 		print("SUMMONING A LEVEL " + (SummonQuality * 100.0f).ToString("0") + " DEMON!");
+        GetComponent<AudioSource>().Play();
         if (SummonSuccess != null)
             SummonSuccess();
         // Also destroy every Hazard
