@@ -76,4 +76,23 @@ public class WaterBalloon : Hazard {
 
 		return new Vector2(xPos, yPos);
 	}
+
+	protected override void OnTriggerEnter2D(Collider2D collid)
+	{
+		base.OnTriggerEnter2D(collid);
+
+		StartCoroutine(ExplodeWaterBalloon());
+	}
+
+	private IEnumerator ExplodeWaterBalloon()
+	{
+		Speed = 0.0f;
+		AudioSource AudioEffect = GetComponent<AudioSource>();
+		while(AudioEffect.isPlaying)
+		{
+			yield return null;
+		}
+
+		GameObject.Destroy(gameObject);
+	}
 }
