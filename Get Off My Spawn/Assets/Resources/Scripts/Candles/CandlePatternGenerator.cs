@@ -238,6 +238,7 @@ public class CandlePatternGenerator : MonoBehaviour {
     {
         if(correct_sequence[0] == sender)
         {
+            sender.CorrectCandle();
             correct_sequence.RemoveAt(0);
             if(correct_sequence.Count > 0)
             {
@@ -252,6 +253,7 @@ public class CandlePatternGenerator : MonoBehaviour {
                 return; 
             correct_sequence.RemoveAt(i);
             Summoner.sngl.WrongCandleLit();
+            sender.IncorrectCandle();
         }
 
         if (correct_sequence.Count == 0)
