@@ -6,6 +6,8 @@ public class CourtryardGenerate : MonoBehaviour {
     public GameObject fence_prefab;
     public Rect fence_shape;
     public Sprite[] lawn_prefabs;
+    public GameObject gate_prefab;
+    public GameObject stone_end_prefab;
 
     Texture2D lawn;
 
@@ -24,6 +26,7 @@ public class CourtryardGenerate : MonoBehaviour {
         box.offset = new Vector2(0, fence_shape.y + fence_shape.height);
         bound = new_side.GetComponent<BoundaryFillFence>();
         bound.is_vert = false;
+        bound.mid_prefab = gate_prefab;
         bound.Fill();
         // Bottom side
         new_side = Instantiate(fence_prefab);
@@ -34,6 +37,7 @@ public class CourtryardGenerate : MonoBehaviour {
         box.offset = new Vector2(0, fence_shape.y);
         bound = new_side.GetComponent<BoundaryFillFence>();
         bound.is_vert = false;
+        bound.mid_prefab = stone_end_prefab;
         bound.Fill();
         // Right side
         new_side = Instantiate(fence_prefab);
@@ -75,6 +79,7 @@ public class CourtryardGenerate : MonoBehaviour {
         GameObject lawn_obj = new GameObject("Lawn");
         lawn_obj.transform.SetParent(transform, false);
         SpriteRenderer srend = lawn_obj.AddComponent<SpriteRenderer>();
+        print(lawn.height / (2.2f * Camera.main.orthographicSize));
         srend.sprite = Sprite.Create(lawn, new Rect(0, 0, lawn.width, lawn.height), Vector2.one * 0.5f, lawn.height/(2.2f*Camera.main.orthographicSize));
         srend.sortingLayerName = "Lawn";
     }

@@ -5,6 +5,7 @@ public class BoundaryFillFence : MonoBehaviour {
 
     public float fence_size = 1.0f;
     public GameObject fence_prefab;
+    public GameObject mid_prefab;
     public bool is_vert;
 
     BoxCollider2D collid;
@@ -24,9 +25,19 @@ public class BoundaryFillFence : MonoBehaviour {
         // Now initialize enough fences to fill in the space
         if (!is_vert)
         {
-            for (float x = collid.offset.x - collid.size.x / 2.0f; x <= collid.offset.x + collid.size.x / 2.0f; x += fence_size)
+            for (int x_i = 0; x_i < Mathf.CeilToInt(collid.size.x/fence_size); ++x_i) 
             {
-                GameObject newObj = Instantiate(fence_prefab);
+                GameObject newObj;
+                float x = collid.offset.x  - collid.size.x/2.0f + x_i * fence_size;
+                if (mid_prefab != null && Mathf.Abs(x - collid.offset.x) <= fence_size*1.5f)
+                {
+                    newObj = Instantiate(mid_prefab);
+                    x = x + fence_size * 1.5f;
+                    x_i += 3;
+                }
+                else {
+                    newObj = Instantiate(fence_prefab);
+                }
                 newObj.transform.SetParent(transform);
                 newObj.transform.position = new Vector3(collid.offset.x + x, collid.offset.y, transform.position.z);
             }
