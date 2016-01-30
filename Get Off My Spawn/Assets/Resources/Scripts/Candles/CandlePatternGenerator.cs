@@ -284,6 +284,7 @@ public class CandlePatternGenerator : MonoBehaviour {
         }
         CurrentMarker.transform.parent = next_candle.transform;
         CurrentMarker.transform.localPosition = Vector3.zero;
+		CurrentMarker.GetComponent<Animator> ().SetTrigger ("zoom_in");
         
     }
 }
