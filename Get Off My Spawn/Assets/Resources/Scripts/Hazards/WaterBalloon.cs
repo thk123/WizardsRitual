@@ -9,14 +9,9 @@ public class WaterBalloon : Hazard {
 	public float RampUpTime = 0.5f;
 	public AnimationCurve AccelerationCurve = AnimationCurve.EaseInOut(0.0f, 0.0f, 1.0f, 1.0f);
 	float TimeElapsed;
-    Rigidbody2D rbody;
+    
 
 	public float ArrivalDistance = 1.0f;
-
-    void Awake()
-    {
-        rbody = GetComponent<Rigidbody2D>();
-    }
 
 	// Use this for initialization
 	void Start () {
@@ -43,30 +38,6 @@ public class WaterBalloon : Hazard {
 		{
 			GameObject.Destroy(gameObject);
 		}
-	}
-
-	Vector2 PickStartPosition()
-	{
-		int Side =Random.Range(0, 4);
-		int xPos = Random.Range(0, Screen.width);	
-		int yPos = Random.Range(0, Screen.height);
-		switch(Side)
-		{
-			case 0:
-				return new Vector2(xPos, 0);
-
-			case 1:
-				return new Vector2(xPos, Screen.height);
-
-			case 2:
-				return new Vector2(0, yPos);
-
-			case 3:
-				return new Vector2(Screen.width, yPos);
-
-		}
-		
-		return Vector2.zero;
 	}
 
 	Vector2 PickTarget()
