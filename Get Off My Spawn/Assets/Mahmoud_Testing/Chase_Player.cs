@@ -65,7 +65,7 @@ public class Chase_Player : MonoBehaviour {
 		Vector3 dist = (target.position - transform.position);
 		float angle = 90 - (Mathf.Atan2 (dist.x, dist.y) * Mathf.Rad2Deg);
 		Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
-		transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime);
+		transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime*0.3f);
 		transform.Translate (new Vector2 (speed*4 * Time.deltaTime, 0));
 	}
 
