@@ -46,7 +46,6 @@ public class Football : Hazard {
 	protected override void OnPlayerCollision(Collider2D Player)
 	{
 		base.OnPlayerCollision(Player);
-		print("Oof");
 		HasPlayerBooted = true;
 	}
 }
