@@ -32,7 +32,6 @@ public class PhysicsPlayerControl : MonoBehaviour {
         if (coll_hazard != null)
         {
             rbody.AddForce(collid.GetComponent<Rigidbody2D>().velocity *coll_hazard.WizardImpactStrength, ForceMode2D.Impulse);
-            Destroy(collid.gameObject);
         }
     }
 }

@@ -9,14 +9,9 @@ public class WaterBalloon : Hazard {
 	public float RampUpTime = 0.5f;
 	public AnimationCurve AccelerationCurve = AnimationCurve.EaseInOut(0.0f, 0.0f, 1.0f, 1.0f);
 	float TimeElapsed;
-    Rigidbody2D rbody;
+    
 
 	public float ArrivalDistance = 1.0f;
-
-    void Awake()
-    {
-        rbody = GetComponent<Rigidbody2D>();
-    }
 
 	// Use this for initialization
 	void Start () {
@@ -45,35 +40,30 @@ public class WaterBalloon : Hazard {
 		}
 	}
 
-	Vector2 PickStartPosition()
-	{
-		int Side =Random.Range(0, 4);
-		int xPos = Random.Range(0, Screen.width);	
-		int yPos = Random.Range(0, Screen.height);
-		switch(Side)
-		{
-			case 0:
-				return new Vector2(xPos, 0);
-
-			case 1:
-				return new Vector2(xPos, Screen.height);
-
-			case 2:
-				return new Vector2(0, yPos);
-
-			case 3:
-				return new Vector2(Screen.width, yPos);
-
-		}
-		
-		return Vector2.zero;
-	}
-
 	Vector2 PickTarget()
 	{
 		int xPos = Random.Range(0, Screen.width);
 		int yPos = Random.Range(0, Screen.height);
 
 		return new Vector2(xPos, yPos);
+	}
+
+	protected override void OnTriggerEnter2D(Collider2D collid)
+	{
+		base.OnTriggerEnter2D(collid);
+
+		StartCoroutine(ExplodeWaterBalloon());
+	}
+
+	private IEnumerator ExplodeWaterBalloon()
+	{
+		Speed = 0.0f;
+		AudioSource AudioEffect = GetComponent<AudioSource>();
+		while(AudioEffect.isPlaying)
+		{
+			yield return null;
+		}
+
+		GameObject.Destroy(gameObject);
 	}
 }
