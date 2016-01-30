@@ -5,8 +5,8 @@ using System.Collections;
 public class DifficultyScriptableObject : ScriptableObject {
 
 	// Candle setup
-	public int NumberOfCircles = 15;
-	public int NumberOfCandles = 3;
+	public int NumberOfCircles = 3;
+	public int NumberOfCandles = 15;
 	public float Tot_radius = 4.0f;
 
 	// Summoner setup
