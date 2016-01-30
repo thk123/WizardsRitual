@@ -6,6 +6,7 @@ public class Candle : MonoBehaviour {
 	// Use this for initialization
 	bool IsCandleLit;
 
+
 	public CandlePatternGenerator.candle_pos CandlePosition
 	{
 		get;
@@ -19,10 +20,12 @@ public class Candle : MonoBehaviour {
 	bool CanUnLight;
 
     SpriteRenderer candle_flame;
+    GameObject candle_glow;
 
-	void Start () {
+    void Start () {
 		IsCandleLit = false;
         candle_flame = transform.FindChild("CandleFlame").GetComponent<SpriteRenderer>();
+        candle_glow = transform.FindChild("CandleGlow").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -47,11 +50,13 @@ public class Candle : MonoBehaviour {
 		if(IsCandleLit)
 		{
             candle_flame.enabled = true;
+            candle_glow.SetActive(true);
 			if(OnCandleLit != null) { OnCandleLit(this); }
 		}
 		else
 		{
             candle_flame.enabled = false;
+            candle_glow.SetActive(false);
 			if(OnCandleExtinguished != null) { OnCandleExtinguished(this); }
         }
     }

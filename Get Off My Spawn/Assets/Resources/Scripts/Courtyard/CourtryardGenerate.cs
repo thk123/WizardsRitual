@@ -69,7 +69,7 @@ public class CourtryardGenerate : MonoBehaviour {
             }
         }
         lawn.Apply();
-        GameObject lawn_obj = new GameObject();
+        GameObject lawn_obj = new GameObject("Lawn");
         lawn_obj.transform.SetParent(transform, false);
         SpriteRenderer srend = lawn_obj.AddComponent<SpriteRenderer>();
         srend.sprite = Sprite.Create(lawn, new Rect(0, 0, lawn.width, lawn.height), Vector2.one * 0.5f, pixPerU);
