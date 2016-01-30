@@ -22,12 +22,10 @@ public class Football : Hazard {
 		rbody.velocity = MoveDirection * Speed;
 	}
 
-	protected override void OnTriggerEnter2D(Collider2D collid)
+	protected override void OnPlayerCollision(Collider2D Player)
 	{
-		base.OnTriggerEnter2D(collid);
-
-		// Bounce the ball off the player
-		Vector2 NormalOfCollision = ((Vector2)(transform.position - collid.transform.position)).normalized;
+		base.OnPlayerCollision(Player);
+		Vector2 NormalOfCollision = ((Vector2)(transform.position - Player.transform.position)).normalized;
 		MoveDirection = Vector2.Reflect(MoveDirection, NormalOfCollision);
 	}
 }
