@@ -31,7 +31,7 @@ public class CandlePatternGenerator : MonoBehaviour {
 
     List<List<Vector2>> pattern;
     LineRenderer[] circle_rends;
-    Queue<Candle> correct_sequence;
+    List<Candle> correct_sequence;
 
     List<Candle> Candles;
 
@@ -148,9 +148,9 @@ public class CandlePatternGenerator : MonoBehaviour {
             Candles[i] = Candles[iswap];
             Candles[iswap] = cpos;
         }
-        correct_sequence = new Queue<Candle>(Candles);
+        correct_sequence = new List<Candle>(Candles);
 
-        HighlightCandle(correct_sequence.Peek());
+        HighlightCandle(correct_sequence[0]);
     }
 	
 	// Update is called once per frame
@@ -159,13 +159,12 @@ public class CandlePatternGenerator : MonoBehaviour {
 
     void Candle_OnCandleLit(Candle sender)
     {
-        if(correct_sequence.Peek() == sender)
+        if(correct_sequence[0] == sender)
         {
-            correct_sequence.Dequeue();
+            correct_sequence.RemoveAt(0);
             if(correct_sequence.Count > 0)
             {
-                Candle next_candle = correct_sequence.Peek();
-                HighlightCandle(next_candle);
+                HighlightCandle(correct_sequence[0]);
             }
             else
             {
@@ -174,12 +173,9 @@ public class CandlePatternGenerator : MonoBehaviour {
         }
         else
         {
+            int i = correct_sequence.FindIndex(c => c == sender);
             sender.SetCandleLit(false);
-            WrongCandlePenalty penalty = FindObjectOfType<WrongCandlePenalty>();
-            if(penalty != null)
-            {
-                penalty.WrongCandleLit();
-            }
+            Summoner.sngl.WrongCandleLit();
         }
     }
 

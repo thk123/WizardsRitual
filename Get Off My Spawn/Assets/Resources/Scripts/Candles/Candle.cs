@@ -17,8 +17,11 @@ public class Candle : MonoBehaviour {
 
 	bool CanUnLight;
 
+    SpriteRenderer candle_flame;
+
 	void Start () {
 		IsCandleLit = false;
+        candle_flame = transform.FindChild("CandleFlame").GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -42,15 +45,14 @@ public class Candle : MonoBehaviour {
 		IsCandleLit = IsLit;
 		if(IsCandleLit)
 		{
-			gameObject.GetComponent<SpriteRenderer>().color = Color.yellow; 
+            candle_flame.enabled = true;
 			if(OnCandleLit != null) { OnCandleLit(this); }
 		}
 		else
 		{
-			//GameObject.Destroy(gameObject);
-			gameObject.GetComponent<SpriteRenderer>().color = Color.white; 
-		}
-	}
+            candle_flame.enabled = false;
+        }
+    }
 
 	public bool GetIsCandleLit()
 	{

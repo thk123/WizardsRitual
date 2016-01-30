@@ -9,6 +9,7 @@ public interface ISumonQualityPenalty
 
 public class Summoner : MonoBehaviour {
 
+    public static Summoner sngl;
 	List<ISumonQualityPenalty> Penalties; 
 
 	public float SummonQuality
@@ -18,6 +19,12 @@ public class Summoner : MonoBehaviour {
 	}
 
 	// Use this for initialization
+
+    void Awake()
+    {
+        sngl = this;
+    }
+
 	void Start () {
 		SummonQuality = 1.0f;
 		Penalties = new List<ISumonQualityPenalty>();
@@ -32,6 +39,15 @@ public class Summoner : MonoBehaviour {
 			SummonQuality = Mathf.Clamp(SummonQuality, 0.0f, 1.0f);
 		}
 	}
+
+    public void WrongCandleLit()
+    {
+        foreach (ISumonQualityPenalty pen in Penalties)
+        {
+            if (pen is WrongCandlePenalty)
+                ((WrongCandlePenalty)pen).WrongCandleLit();
+        }
+    }
 
 	public void Summon()
 	{
