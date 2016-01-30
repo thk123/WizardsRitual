@@ -41,7 +41,7 @@ public class WaterBalloon : Hazard {
 		}
 		else
 		{
-			GameObject.Destroy(gameObject);
+			StartCoroutine(ExplodeWaterBalloon());
 		}
 	}
 
@@ -68,6 +68,14 @@ public class WaterBalloon : Hazard {
 	private IEnumerator ExplodeWaterBalloon()
 	{
 		Speed = 0.0f;
+		rbody.velocity = Vector2.zero;
+
+		Animator balloonAnimator = GetComponent<Animator>();
+		if(balloonAnimator != null)
+		{
+			balloonAnimator.SetBool("Exploded", true);
+		}
+
 		AudioSource AudioEffect = GetComponent<AudioSource>();
 		while(AudioEffect.isPlaying)
 		{
