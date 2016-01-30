@@ -8,6 +8,8 @@ public class CourtryardGenerate : MonoBehaviour {
     public Sprite[] lawn_prefabs;
     public GameObject gate_prefab;
     public GameObject stone_end_prefab;
+    public GameObject stone_way_prefab;
+    public float road_spacing = 1.0f, road_side_offset = 0.25f;
 
     Texture2D lawn;
 
@@ -57,6 +59,18 @@ public class CourtryardGenerate : MonoBehaviour {
         bound = new_side.GetComponent<BoundaryFillFence>();
         bound.is_vert = true;
         bound.Fill();
+
+        // Now the road
+        float road_y = fence_shape.y;
+
+        while(road_y > Camera.main.transform.position.y-Camera.main.orthographicSize)
+        {
+            road_y -= road_spacing;
+            print(road_y);
+            new_side = Instantiate(stone_way_prefab);
+            new_side.transform.SetParent(transform, false);
+            new_side.transform.localPosition = new Vector3(road_side_offset, road_y);
+        }
 
         // Now the lawn
         float pixPerU = lawn_prefabs[0].pixelsPerUnit;

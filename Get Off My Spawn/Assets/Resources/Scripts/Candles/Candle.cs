@@ -5,6 +5,7 @@ public class Candle : MonoBehaviour {
 
 	// Use this for initialization
 	bool IsCandleLit;
+    bool IsFrozen;
 
 	public AudioSource GoodSound;
 	public AudioSource BadSound;
@@ -26,6 +27,8 @@ public class Candle : MonoBehaviour {
 
     void Start () {
 		IsCandleLit = false;
+        IsFrozen = false;
+        Summoner.SummonSuccess += FreezeLit;
         candle_flame = transform.FindChild("CandleFlame").GetComponent<SpriteRenderer>();
         candle_glow = transform.FindChild("CandleGlow").gameObject;
 	}
@@ -48,7 +51,7 @@ public class Candle : MonoBehaviour {
 
 	public void SetCandleLit(bool IsLit)
 	{
-        if (IsLit == IsCandleLit)
+        if (IsLit == IsCandleLit || IsFrozen)
             return;
 		IsCandleLit = IsLit;
 		if(IsCandleLit)
@@ -82,4 +85,9 @@ public class Candle : MonoBehaviour {
 	{
 		BadSound.Play();
 	}
+
+    public void FreezeLit()
+    {
+        IsFrozen = true;
+    }
 }

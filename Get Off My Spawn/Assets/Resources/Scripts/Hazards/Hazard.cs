@@ -19,6 +19,7 @@ public class Hazard : MonoBehaviour {
 
 	// Use this for initialization
 	protected virtual void Start () {
+        Summoner.SummonSuccess += KillMe;
 		FullyEnteredGarden = false;
 		ComputeGameBounds(out TopLeftCorner, out BottomRightCorner);
 	}
@@ -129,4 +130,14 @@ public class Hazard : MonoBehaviour {
 	{
 
 	}
+
+    protected void KillMe()
+    {
+        Destroy(gameObject);
+    }
+
+    protected void OnDestroy()
+    {
+        Summoner.SummonSuccess -= KillMe;
+    }
 }

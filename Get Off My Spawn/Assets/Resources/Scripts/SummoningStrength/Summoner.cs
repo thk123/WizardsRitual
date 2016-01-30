@@ -10,7 +10,9 @@ public interface ISumonQualityPenalty
 public class Summoner : MonoBehaviour {
     
     public static Summoner sngl;
-	List<ISumonQualityPenalty> Penalties; 
+	List<ISumonQualityPenalty> Penalties;
+    public delegate void SummonEvent();
+    public static SummonEvent SummonSuccess;
 
 	public float SummonQuality
 	{
@@ -72,5 +74,16 @@ public class Summoner : MonoBehaviour {
     public void Summon()
 	{
 		print("SUMMONING A LEVEL " + (SummonQuality * 100.0f).ToString("0") + " DEMON!");
+        if (SummonSuccess != null)
+            SummonSuccess();
+        // Also destroy every Hazard
+        /*
+        Hazard[] all_hazards = GameObject.FindObjectsOfType<Hazard>();
+        foreach (Hazard h in all_hazards)
+        {
+            Destroy(h.gameObject);
+        }
+        */
+
 	}
 }

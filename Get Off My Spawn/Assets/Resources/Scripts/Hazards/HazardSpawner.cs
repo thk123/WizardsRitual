@@ -15,15 +15,23 @@ public class HazardSpawner : MonoBehaviour {
 
 	public int MaxNumberAcrossAllHazards = 4;
 
+    Coroutine spawn_coroutine;
+
 	// Use this for initialization
 	void Start () {       
 
 		if(Hazards.Count > 0)
 		{
-			StartCoroutine(SpawnRandomHazard());
+			spawn_coroutine = StartCoroutine(SpawnRandomHazard());
 		}
+        Summoner.SummonSuccess += StopSpawning;
 	}
 	
+    void StopSpawning()
+    {
+        StopCoroutine(spawn_coroutine);
+    }
+
 	// Update is called once per frame
 	void Update () {
 		
