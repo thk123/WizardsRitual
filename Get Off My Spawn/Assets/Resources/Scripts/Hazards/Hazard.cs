@@ -54,9 +54,9 @@ public class Hazard : MonoBehaviour {
 
 	protected Vector2 PickStartPosition()
 	{
-		int Side =Random.Range(0, 4);
-		int xPos = Random.Range(0, Screen.width);	
-		int yPos = Random.Range(0, Screen.height);
+		int Side = Random.Range(0, 4);
+		int xPos = Random.Range(Screen.width / 3, Screen.width * 2 / 3);	
+		int yPos = Random.Range(Screen.height / 3, Screen.height * 2 / 3);
 
 		Vector2 ScreenSpaceVector = Vector2.zero;
 
