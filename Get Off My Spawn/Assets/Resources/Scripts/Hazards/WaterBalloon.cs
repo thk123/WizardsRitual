@@ -7,6 +7,9 @@ public class WaterBalloon : Hazard {
 
 	public float Speed = 10.0f;
 	public float RampUpTime = 0.5f;
+
+	public float Inaccuracy = 1.0f;
+
 	public AnimationCurve AccelerationCurve = AnimationCurve.EaseInOut(0.0f, 0.0f, 1.0f, 1.0f);
 	float TimeElapsed;
     
@@ -16,7 +19,7 @@ public class WaterBalloon : Hazard {
 	// Use this for initialization
 	protected override void Start () {
 		base.Start();
-		Target = Camera.main.ScreenToWorldPoint(PickTarget());
+		Target = PickTarget();
 		Vector2 StartingPosition = Camera.main.ScreenToWorldPoint(PickStartPosition());
 		transform.position = StartingPosition;
 
@@ -38,16 +41,19 @@ public class WaterBalloon : Hazard {
 		}
 		else
 		{
-			GameObject.Destroy(gameObject);
+			StartCoroutine(ExplodeWaterBalloon());
 		}
 	}
 
 	Vector2 PickTarget()
 	{
-		int xPos = Random.Range(0, Screen.width);
-		int yPos = Random.Range(0, Screen.height);
+		Candle[] PossibleCandles = GameObject.FindObjectsOfType<Candle>();
 
-		return new Vector2(xPos, yPos);
+		Candle SelectedCandle = PossibleCandles[Random.Range(0, PossibleCandles.Length)];
+
+		Vector2 MissVector = Random.insideUnitCircle;
+
+		return ((Vector2)SelectedCandle.transform.position) + (MissVector * Inaccuracy);
 	}
 
 	protected override void OnTriggerEnter2D(Collider2D collid)
@@ -62,6 +68,14 @@ public class WaterBalloon : Hazard {
 	private IEnumerator ExplodeWaterBalloon()
 	{
 		Speed = 0.0f;
+		rbody.velocity = Vector2.zero;
+
+		Animator balloonAnimator = GetComponent<Animator>();
+		if(balloonAnimator != null)
+		{
+			balloonAnimator.SetBool("Exploded", true);
+		}
+
 		AudioSource AudioEffect = GetComponent<AudioSource>();
 		while(AudioEffect.isPlaying)
 		{
