@@ -59,7 +59,7 @@ public class CourtryardGenerate : MonoBehaviour {
         // Calculate the required size!
         int tile_width = lawn_prefabs[0].texture.width;
         int tile_height = lawn_prefabs[0].texture.height;
-        lawn = new Texture2D(Camera.main.pixelWidth, Camera.main.pixelHeight);
+        lawn = new Texture2D(Mathf.CeilToInt(Camera.main.pixelWidth*1.1f), Mathf.CeilToInt(Camera.main.pixelHeight*1.1f));
         Texture2D base_tile;
         for (int x = 0; x < lawn.width; x += tile_width)
         {
@@ -75,7 +75,7 @@ public class CourtryardGenerate : MonoBehaviour {
         GameObject lawn_obj = new GameObject("Lawn");
         lawn_obj.transform.SetParent(transform, false);
         SpriteRenderer srend = lawn_obj.AddComponent<SpriteRenderer>();
-        srend.sprite = Sprite.Create(lawn, new Rect(0, 0, lawn.width, lawn.height), Vector2.one * 0.5f, lawn.height/(2*Camera.main.orthographicSize));
+        srend.sprite = Sprite.Create(lawn, new Rect(0, 0, lawn.width, lawn.height), Vector2.one * 0.5f, lawn.height/(2.2f*Camera.main.orthographicSize));
         srend.sortingLayerName = "Lawn";
     }
 

@@ -42,6 +42,8 @@ public class Summoner : MonoBehaviour {
 
     public void WrongCandleLit()
     {
+        // Shake the camera!
+        CameraShake.sngl.Play();
         foreach (ISumonQualityPenalty pen in Penalties)
         {
             if (pen is WrongCandlePenalty)
