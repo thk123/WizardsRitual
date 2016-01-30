@@ -53,8 +53,10 @@ public class WaterBalloon : Hazard {
 	protected override void OnTriggerEnter2D(Collider2D collid)
 	{
 		base.OnTriggerEnter2D(collid);
-
-		StartCoroutine(ExplodeWaterBalloon());
+		if(FullyEnteredGarden)
+		{
+			StartCoroutine(ExplodeWaterBalloon());
+		}
 	}
 
 	private IEnumerator ExplodeWaterBalloon()
