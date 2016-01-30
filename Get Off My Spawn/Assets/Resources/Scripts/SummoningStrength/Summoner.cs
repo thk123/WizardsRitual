@@ -76,6 +76,8 @@ public class Summoner : MonoBehaviour {
 		print("SUMMONING A LEVEL " + (SummonQuality * 100.0f).ToString("0") + " DEMON!");
         if (SummonSuccess != null)
             SummonSuccess();
+
+        FindObjectOfType<DifficultyManager>().NextDifficulty();
         // Also destroy every Hazard
         /*
         Hazard[] all_hazards = GameObject.FindObjectsOfType<Hazard>();

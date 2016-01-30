@@ -8,4 +8,10 @@ public class HazardDefinition : System.Object {
     public float probability;
     public int MaxNumberOnScreen;
 
+    public HazardDefinition(float prob, int max)
+    {
+    	probability = prob;
+    	MaxNumberOnScreen = max;
+    }
+
 }
