@@ -9,7 +9,11 @@ public class Dog : Hazard {
 	protected override void Start () {
 		base.Start();	
 		c = GetComponent<Chase_Player> ();
-		c.target = GameObject.FindGameObjectWithTag(Utility.PlayerTag).transform;
+		//if (Random.Range (0, 5)> 0) {
+			c.target = GameObject.FindGameObjectWithTag (Utility.PlayerTag).transform;
+	//	} else {
+	//		c.target = GameObject.FindObjectOfType<Hazard> ().transform;
+//		}
 		transform.position = PickStartPosition ();
 
 	}

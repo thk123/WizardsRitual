@@ -6,6 +6,8 @@ public class Candle : MonoBehaviour {
 	// Use this for initialization
 	bool IsCandleLit;
 
+	public AudioSource GoodSound;
+	public AudioSource BadSound;
 
 	public CandlePatternGenerator.candle_pos CandlePosition
 	{
@@ -71,5 +73,13 @@ public class Candle : MonoBehaviour {
 	public void SetCandlePosition(CandlePatternGenerator.candle_pos Position)
 	{
 		CandlePosition = Position;
+	}
+	public void CorrectCandle()
+	{
+		GoodSound.Play();
+	}
+	public void IncorrectCandle()
+	{
+		BadSound.Play();
 	}
 }
