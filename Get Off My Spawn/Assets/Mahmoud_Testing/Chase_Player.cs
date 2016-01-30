@@ -29,6 +29,11 @@ public class Chase_Player : MonoBehaviour {
 			
 	}
 
+	public bool IsJumping()
+	{
+		return jumping;
+	}
+
 	void chase(){
 		Vector3 dist = (target.position - transform.position);
 		float angle = 90 - (Mathf.Atan2 (dist.x, dist.y) * Mathf.Rad2Deg);
@@ -51,6 +56,7 @@ public class Chase_Player : MonoBehaviour {
 		prepProgress += Time.deltaTime;
 		if (prepProgress > 1) {
 			prepping = false;
+			GetComponent<AudioSource>().Play();
 		} else {
 			Vector3 dist = (target.position - transform.position);
 			float angle = 90 - (Mathf.Atan2 (dist.x, dist.y) * Mathf.Rad2Deg);
