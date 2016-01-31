@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public interface ISumonQualityPenalty
 {
@@ -49,6 +50,7 @@ public class Summoner : MonoBehaviour {
         {
             Destroy(d.gameObject);
         }
+        EndText.sngl.Hide();
         // Start the countdown, once it's over, shit's going down
         Countdown.sngl.onEnd = Unpause;
         Countdown.sngl.Reset();
@@ -120,7 +122,11 @@ public class Summoner : MonoBehaviour {
 
     public void Summon()
 	{
-		print("SUMMONING A LEVEL " + (SummonQuality * 100.0f).ToString("0") + " DEMON!");
+        int lv = Mathf.CeilToInt(SummonQuality * 100.0f);
+
+        print("SUMMONING A LEVEL " + lv + " DEMON!");
+        EndText.sngl.Show( "Summoning a level " + lv + " demon!");
+
         GetComponent<AudioSource>().Play();
         if (SummonSuccess != null)
             SummonSuccess();
