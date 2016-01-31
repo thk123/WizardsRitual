@@ -30,11 +30,7 @@ public class MetaGameManager : MonoBehaviour {
 			ZoomComponent.enabled = true;
 		}
 
-		var Boundaries = GameObject.FindGameObjectsWithTag(Utility.BoundsTag);
-		foreach(var Boundary in Boundaries)
-		{
-			Boundary.GetComponent<Collider2D>().enabled = false;
-		}
+		SetBoundariesEnabled(false);
 
 		Wizard.gameObject.active = false;
 		Demon.gameObject.active = true;
@@ -52,8 +48,19 @@ public class MetaGameManager : MonoBehaviour {
 			ZoomComponent.enabled = true;
 		}
 
+		SetBoundariesEnabled(true);
+
 		FindObjectOfType<DifficultyManager>().NextDifficulty();  
 
 		enabled = false;
+	}
+
+	private void SetBoundariesEnabled(bool Enabled)
+	{
+		var Boundaries = GameObject.FindGameObjectsWithTag(Utility.BoundsTag);
+		foreach(var Boundary in Boundaries)
+		{
+			Boundary.GetComponent<Collider2D>().enabled = Enabled;
+		}
 	}
 }
