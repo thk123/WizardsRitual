@@ -29,6 +29,7 @@ public class WaterBalloon : Hazard {
 			Target = GetTargetPosition(TargetCandle);
 			Vector2 StartingPosition = PickStartPosition();
 			transform.position = StartingPosition;
+            GetComponent<SpriteRenderer>().enabled = true;
 		}
 		else
 		{
@@ -54,7 +55,10 @@ public class WaterBalloon : Hazard {
 		}
 		else
 		{
-			StartCoroutine(ExplodeWaterBalloon());
+            if (!WaterBalloonExploded)
+            {
+                StartCoroutine(ExplodeWaterBalloon());
+            }
 		}
 	}
 
@@ -115,11 +119,14 @@ public class WaterBalloon : Hazard {
 
 		AudioSource AudioEffect = GetComponent<AudioSource>();
 		AudioEffect.Play();
-		while(AudioEffect.isPlaying)
+
+        // Issue caused by loop - object can't access audio / doesn't destroy afterwards
+        // yield return new WaitForSeconds(2);
+        while (AudioEffect.isPlaying)
 		{
 			yield return null;
 		}
 
 		GameObject.Destroy(gameObject);
-	}
+     }
 }
