@@ -84,7 +84,7 @@ public class Summoner : MonoBehaviour {
         if (SummonSuccess != null)
             SummonSuccess();
 
-        MetaGameManager MetaGame =FindObjectOfType<MetaGameManager>();
+        MetaGameManager MetaGame = FindObjectOfType<MetaGameManager>();
         if(MetaGame != null)
         {
             MetaGame.StartMetaGame();
