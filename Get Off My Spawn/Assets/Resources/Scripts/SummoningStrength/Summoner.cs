@@ -85,13 +85,6 @@ public class Summoner : MonoBehaviour {
                     }
 
                 }
-
-                if(Input.GetKeyDown(KeyCode.R))
-                {
-                     FindObjectOfType<DifficultyManager>().RestartDifficulty();
-                }
-
-
                 break;
             default:
                 break;
