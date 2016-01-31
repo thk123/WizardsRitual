@@ -22,7 +22,6 @@ public class CourtryardGenerate : MonoBehaviour {
         // Top side
         new_side = Instantiate(fence_prefab);
         new_side.transform.SetParent(transform, false);
-        new_side.transform.localPosition = Vector3.forward;
         box = new_side.GetComponent<BoxCollider2D>();
         box.size = new Vector2(fence_shape.width, 1.0f);
         box.offset = new Vector2(0, fence_shape.y + fence_shape.height);
@@ -33,7 +32,6 @@ public class CourtryardGenerate : MonoBehaviour {
         // Bottom side
         new_side = Instantiate(fence_prefab);
         new_side.transform.SetParent(transform, false);
-        new_side.transform.localPosition = Vector3.back;
         box = new_side.GetComponent<BoxCollider2D>();
         box.size = new Vector2(fence_shape.width, 1.0f);
         box.offset = new Vector2(0, fence_shape.y);
@@ -66,7 +64,6 @@ public class CourtryardGenerate : MonoBehaviour {
         while(road_y > Camera.main.transform.position.y-Camera.main.orthographicSize)
         {
             road_y -= road_spacing;
-            print(road_y);
             new_side = Instantiate(stone_way_prefab);
             new_side.transform.SetParent(transform, false);
             new_side.transform.localPosition = new Vector3(road_side_offset, road_y);
@@ -93,7 +90,6 @@ public class CourtryardGenerate : MonoBehaviour {
         GameObject lawn_obj = new GameObject("Lawn");
         lawn_obj.transform.SetParent(transform, false);
         SpriteRenderer srend = lawn_obj.AddComponent<SpriteRenderer>();
-        print(lawn.height / (2.2f * Camera.main.orthographicSize));
         srend.sprite = Sprite.Create(lawn, new Rect(0, 0, lawn.width, lawn.height), Vector2.one * 0.5f, lawn.height/(2.2f*Camera.main.orthographicSize));
         srend.sortingLayerName = "Lawn";
     }

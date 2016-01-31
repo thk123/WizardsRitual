@@ -9,10 +9,14 @@ public interface ISumonQualityPenalty
 
 public class Summoner : MonoBehaviour {
     
+    public enum GameState { RUNNING, PAUSED, WON};
+
     public static Summoner sngl;
 	List<ISumonQualityPenalty> Penalties;
     public delegate void SummonEvent();
     public static SummonEvent SummonSuccess;
+
+    public GameState myState;
 
 	public float SummonQuality
 	{
@@ -38,16 +42,52 @@ public class Summoner : MonoBehaviour {
     public void Restart()
     {
         SummonQuality = 1.0f;
+        Pause();
+        // Clear any existing demons
+        DemonSmash[] any_demon = GameObject.FindObjectsOfType<DemonSmash>();
+        foreach (DemonSmash d in any_demon)
+        {
+            Destroy(d.gameObject);
+        }
+        // Start the countdown, once it's over, shit's going down
+        Countdown.sngl.onEnd = Unpause;
+        Countdown.sngl.Reset();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		foreach(ISumonQualityPenalty Penalty in gameObject.GetComponents<ISumonQualityPenalty>())
-		{
-			SummonQuality -= Penalty.GetCurrentPenalty();	
-			SummonQuality = Mathf.Clamp01(SummonQuality);
-		}
-	}
+
+    // Update is called once per frame
+    void Update () {
+
+        switch (myState)
+        {
+            case GameState.RUNNING:
+                foreach (ISumonQualityPenalty Penalty in gameObject.GetComponents<ISumonQualityPenalty>())
+                {
+                    SummonQuality -= Penalty.GetCurrentPenalty();
+                    SummonQuality = Mathf.Clamp01(SummonQuality);
+                }
+                break;
+            case GameState.WON:
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    MetaGameManager MetaGame = FindObjectOfType<MetaGameManager>();
+                    if (MetaGame != null)
+                    {
+                        MetaGame.StartMetaGame();
+                        // TODO: if we want a different decay rate for the demon then we
+                        // should change the ISumonQualityPenalty here
+                    }
+                    else
+                    {
+                        FindObjectOfType<DifficultyManager>().NextDifficulty();
+                    }
+
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
     public void WrongCandleLit()
     {
@@ -85,17 +125,7 @@ public class Summoner : MonoBehaviour {
         if (SummonSuccess != null)
             SummonSuccess();
 
-        MetaGameManager MetaGame = FindObjectOfType<MetaGameManager>();
-        if(MetaGame != null)
-        {
-            MetaGame.StartMetaGame();
-            // TODO: if we want a different decay rate for the demon then we
-            // should change the ISumonQualityPenalty here
-        }
-        else
-        {
-            FindObjectOfType<DifficultyManager>().NextDifficulty();  
-        }
+        myState = GameState.WON;
 
         //
         // Also destroy every Hazard
@@ -108,4 +138,22 @@ public class Summoner : MonoBehaviour {
         */
 
 	}
+
+    public void Pause()
+    {
+        if (myState != GameState.PAUSED)
+        {
+            myState = GameState.PAUSED;
+            Time.timeScale = 0.0f;
+        }
+    }
+
+    public void Unpause()
+    {
+        if (myState != GameState.RUNNING)
+        {
+            myState = GameState.RUNNING;
+            Time.timeScale = 1.0f;
+        }
+    }
 }
