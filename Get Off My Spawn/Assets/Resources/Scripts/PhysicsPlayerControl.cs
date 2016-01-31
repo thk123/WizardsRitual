@@ -43,5 +43,6 @@ public class PhysicsPlayerControl : MonoBehaviour {
     {
         rbody.position = starting_pos;
         rbody.velocity = Vector2.zero;
+        transform.position = (Vector3)starting_pos;
     }
 }
