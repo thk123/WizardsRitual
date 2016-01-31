@@ -161,7 +161,7 @@ public class CandlePatternGenerator : MonoBehaviour {
         Color[] color_array = new Color[circle_side*circle_side];
 
         circle_drawing = new Texture2D(circle_side, circle_side);
-        circle_drawing.alphaIsTransparency = true;
+        //circle_drawing.alphaIsTransparency = true;
         circle_drawing.filterMode = FilterMode.Point;
         // Start by clearing
         for (int i = 0; i < circle_side*circle_side; ++i)
