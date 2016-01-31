@@ -32,7 +32,15 @@ public class Newspaper : Hazard {
     protected override void OnTriggerEnter2D(Collider2D collider)
     {
         base.OnTriggerEnter2D(collider);
-
+        if (collider.tag == Utility.PlayerTag)
+        {
+            Vector2 NormalOfCollision = ((Vector2)(transform.position - collider.transform.position)).normalized;
+            MoveDirection = Vector2.Reflect(MoveDirection, NormalOfCollision);
+//            if (!GetComponent<AudioSource>().isPlaying)
+//            {
+//                GetComponent<AudioSource>().Play();
+//            }
+        }
     }
 
     protected override void OnPlayerCollision(Collider2D Player)
