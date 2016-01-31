@@ -40,7 +40,7 @@ public class Candle : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D Collider)
 	{
-		if(Collider.tag == Utility.PlayerTag)
+		if(Collider.tag == Utility.CandleLighter)
 		{
 			if(!IsCandleLit)
 			{
