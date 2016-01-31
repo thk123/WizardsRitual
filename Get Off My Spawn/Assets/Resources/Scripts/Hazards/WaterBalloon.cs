@@ -29,6 +29,7 @@ public class WaterBalloon : Hazard {
 			Target = GetTargetPosition(TargetCandle);
 			Vector2 StartingPosition = PickStartPosition();
 			transform.position = StartingPosition;
+            GetComponent<SpriteRenderer>().enabled = true;
 		}
 		else
 		{
@@ -42,7 +43,8 @@ public class WaterBalloon : Hazard {
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
-		Vector2 DistanceToGoVector = Target - ((Vector2)transform.position);
+
+        Vector2 DistanceToGoVector = Target - ((Vector2)transform.position);
 		float DistanceToGo = DistanceToGoVector.sqrMagnitude;
 
 		if(DistanceToGo > ArrivalDistance * ArrivalDistance)
@@ -54,7 +56,10 @@ public class WaterBalloon : Hazard {
 		}
 		else
 		{
-			StartCoroutine(ExplodeWaterBalloon());
+            if (!WaterBalloonExploded)
+            {
+                StartCoroutine(ExplodeWaterBalloon());
+            }
 		}
 	}
 
@@ -112,14 +117,18 @@ public class WaterBalloon : Hazard {
 		{
 			balloonAnimator.SetBool("Exploded", true);
 		}
-
-		AudioSource AudioEffect = GetComponent<AudioSource>();
+        
+        AudioSource AudioEffect = GetComponent<AudioSource>();
 		AudioEffect.Play();
-		while(AudioEffect.isPlaying)
+
+        ParticleSystem ParticleSplash = GetComponent<ParticleSystem>();
+        ParticleSplash.Play();
+
+        while (AudioEffect.isPlaying)
 		{
 			yield return null;
 		}
 
 		GameObject.Destroy(gameObject);
-	}
+     }
 }
