@@ -5,9 +5,12 @@ public class FrontEndController : MonoBehaviour {
 
 	public string MainGameLevel;
 	public GameObject CreditsUiElement;
+    public GameObject AboutUiElement;
 
 	// Use this for initialization
 	void Start () {
+
+        Cursor.visible = true;
 	
 	}
 	
@@ -31,7 +34,17 @@ public class FrontEndController : MonoBehaviour {
 		CreditsUiElement.active = false;	
 	}
 
-	public void ExitGame()
+    public void About()
+    {
+        AboutUiElement.active = true;
+    }
+
+    public void HideAbout()
+    {
+        AboutUiElement.active = false;
+    }
+
+    public void ExitGame()
 	{
 		Application.Quit();
 	}
