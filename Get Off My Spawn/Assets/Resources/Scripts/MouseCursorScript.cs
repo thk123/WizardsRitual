@@ -13,7 +13,10 @@ public class MouseCursorScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // Hide the real cursor
-        //Cursor.visible = false;
+#if UNITY_EDITOR
+#else
+        Cursor.visible = false;
+#endif
 	}
 	
 	// Update is called once per frame
