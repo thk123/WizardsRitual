@@ -43,7 +43,6 @@ public class Summoner : MonoBehaviour {
     public void Restart()
     {
         SummonQuality = 1.0f;
-        GameObject.FindObjectOfType<PhysicsPlayerControl>().Reset();
         Pause();
         // Clear any existing demons
         DemonSmash[] any_demon = GameObject.FindObjectsOfType<DemonSmash>();
@@ -82,6 +81,7 @@ public class Summoner : MonoBehaviour {
                     }
                     else
                     {
+                        GameObject.FindObjectOfType<PhysicsPlayerControl>().Reset();
                         FindObjectOfType<DifficultyManager>().NextDifficulty();
                     }
 
