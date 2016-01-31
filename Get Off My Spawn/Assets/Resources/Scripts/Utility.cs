@@ -31,4 +31,5 @@ public class Utility : MonoBehaviour {
 	public const string PlayerTag = "Player";
 	public const string CandleTag = "Candle";	
 	public const string BoundsTag = "Bounds";
+	public const string BuildingsTag = "Building";
 }
