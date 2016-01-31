@@ -20,16 +20,20 @@ public class HazardSpawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {       
 
-		if(Hazards.Count > 0)
-		{
-			spawn_coroutine = StartCoroutine(SpawnRandomHazard());
-		}
-        Summoner.SummonSuccess += StopSpawning;
+		Summoner.SummonSuccess += StopSpawning;
 	}
 	
     void StopSpawning()
     {
         StopCoroutine(spawn_coroutine);
+    }
+
+    public void Restart()
+    {
+		if(Hazards.Count > 0)
+		{
+			spawn_coroutine = StartCoroutine(SpawnRandomHazard());
+		}
     }
 
 	// Update is called once per frame
