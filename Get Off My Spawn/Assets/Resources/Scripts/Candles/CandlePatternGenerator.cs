@@ -32,6 +32,8 @@ public class CandlePatternGenerator : MonoBehaviour {
     public GameObject explosion_prefab;
     public SummonDescription[] summons;
 
+    public AudioClip[] demon_voices;
+
     int[] circle_sizes;
     List<List<Vector2>> pattern;
     //LineRenderer[] circle_rends;
@@ -275,12 +277,22 @@ public class CandlePatternGenerator : MonoBehaviour {
         for (int i = summons.Length-1; i >= 0; --i)
         {
             print(summons[i].demon_threshold + " " + summon_power);
-            if (summons[i].demon_threshold < summon_power)
+            if (summons[i].demon_threshold <= summon_power)
             {
                 // Do the summoning!
                 Instantiate(summons[i].demon_prefab, transform.position, transform.rotation);
                 break;
             }
+        }
+
+        // Also play an audio clip
+        if (demon_voices.Length > 0)
+        {
+            int clip_i = Random.Range(0, demon_voices.Length);
+            AudioSource asource = GetComponent<AudioSource>();
+            asource.pitch = 2.0f - summon_power;
+            asource.clip = demon_voices[clip_i];
+            asource.Play();
         }
     }
 }
