@@ -43,7 +43,8 @@ public class WaterBalloon : Hazard {
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
-		Vector2 DistanceToGoVector = Target - ((Vector2)transform.position);
+
+        Vector2 DistanceToGoVector = Target - ((Vector2)transform.position);
 		float DistanceToGo = DistanceToGoVector.sqrMagnitude;
 
 		if(DistanceToGo > ArrivalDistance * ArrivalDistance)
@@ -116,12 +117,13 @@ public class WaterBalloon : Hazard {
 		{
 			balloonAnimator.SetBool("Exploded", true);
 		}
-
-		AudioSource AudioEffect = GetComponent<AudioSource>();
+        
+        AudioSource AudioEffect = GetComponent<AudioSource>();
 		AudioEffect.Play();
 
-        // Issue caused by loop - object can't access audio / doesn't destroy afterwards
-        // yield return new WaitForSeconds(2);
+        ParticleSystem ParticleSplash = GetComponent<ParticleSystem>();
+        ParticleSplash.Play();
+
         while (AudioEffect.isPlaying)
 		{
 			yield return null;
