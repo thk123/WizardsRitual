@@ -17,7 +17,7 @@ public class DifficultyManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		NextDifficulty();
+		LoadDifficulty(DifficultySequence[0]);
 	}
 	
 	// Update is called once per frame
@@ -29,14 +29,21 @@ public class DifficultyManager : MonoBehaviour {
 	{
 		if(CurrentLevel < DifficultySequence.Count)
 		{
-			LoadDifficulty(DifficultySequence[CurrentLevel]);
 			++CurrentLevel;
+			LoadDifficulty(DifficultySequence[CurrentLevel]);
+			
 		}
 		else
 		{
 			int LevelToLoop = Random.Range(DifficultySequence.Count - LoopingLastNLevels, DifficultySequence.Count);
+			CurrentLevel = LevelToLoop;
 			LoadDifficulty(DifficultySequence[LevelToLoop]);
 		}
+	}
+
+	public void RestartDifficulty()
+	{
+		LoadDifficulty(DifficultySequence[CurrentLevel]);
 	}
 
 	public void LoadDifficulty(DifficultyScriptableObject DifficultyToLoad)
