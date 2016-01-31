@@ -123,9 +123,11 @@ public class Summoner : MonoBehaviour {
     public void Summon()
 	{
         int lv = Mathf.CeilToInt(SummonQuality * 100.0f);
-
-        print("SUMMONING A LEVEL " + lv + " DEMON!");
-        EndText.sngl.Show( "Summoning a level " + lv + " demon!");
+        
+        if (SummonQuality >= CandlePatternGenerator.fish_threshold)
+            EndText.sngl.Show( "You summoned a level " + lv + " demon!");
+        else
+            EndText.sngl.Show("You summoned... a fish!");
 
         GetComponent<AudioSource>().Play();
         if (SummonSuccess != null)

@@ -21,6 +21,7 @@ public class CandlePatternGenerator : MonoBehaviour {
         }
     }
 
+    public static float fish_threshold;
     public float tot_radius = 3.0f;
     public int candle_num = 5;
     public int circle_num = 1;
@@ -135,7 +136,14 @@ public class CandlePatternGenerator : MonoBehaviour {
 
         //Sort the array of demons
         System.Array.Sort(summons, (s1, s2) => (int)Mathf.Sign(s1.demon_threshold - s2.demon_threshold));
-
+        if (summons.Length > 1)
+        {
+            fish_threshold = summons[1].demon_threshold;
+        }
+        else
+        {
+            fish_threshold = -1;
+        }
     }
 
     void Start()
