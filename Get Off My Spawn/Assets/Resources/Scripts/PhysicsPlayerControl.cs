@@ -21,7 +21,6 @@ public class PhysicsPlayerControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        print(starting_pos);
         // Get the mouse position, that's our set point
         pid_control.SetPoint((Vector2)MouseCursorScript.sngl.transform.position);
         // Now get the force
