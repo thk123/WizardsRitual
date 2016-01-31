@@ -38,7 +38,7 @@ public class DemonSmash : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D collid)
 	{
-		if(GetBuildingFromCollider(collid) == TargetBuilding)
+		if(GetBuildingFromCollider(collid) == TargetBuilding && TargetBuilding != null)
 		{
 			StopCoroutine(HitBuildingCoroutine);
 		}
