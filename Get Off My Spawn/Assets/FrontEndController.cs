@@ -4,7 +4,7 @@ using System.Collections;
 public class FrontEndController : MonoBehaviour {
 
 	public string MainGameLevel;
-	public string CreditsLevel;
+	public GameObject CreditsUiElement;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +23,12 @@ public class FrontEndController : MonoBehaviour {
 
 	public void Credits()
 	{
-		Application.LoadLevel(CreditsLevel);
+		CreditsUiElement.active = true;
+	}
+
+	public void HideCredits()
+	{
+		CreditsUiElement.active = false;	
 	}
 
 	public void ExitGame()
