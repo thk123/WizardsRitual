@@ -1,9 +1,15 @@
 fileFormatVersion: 2
 guid: 85af82c0312ed4309847f6e289bf9c93
-timeCreated: 1454165275
+timeCreated: 1454192940
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Demons_0
+    21300002: Demons_1
+    21300004: Demons_2
+    21300006: Demons_3
+    21300008: Demons_4
+    21300010: Demons_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +36,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +44,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +55,106 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Demons_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 101
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Demons_1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 102
+        width: 23
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Demons_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 68
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -34, y: 18}
+        - {x: -34, y: -14}
+        - {x: -33, y: -18}
+        - {x: 34, y: -18}
+        - {x: 34, y: 18}
+    - name: Demons_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 64
+        width: 72
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 18}
+        - {x: -36, y: 13}
+        - {x: -36, y: -18}
+        - {x: 36, y: -18}
+        - {x: 36, y: 13}
+        - {x: 32, y: 18}
+    - name: Demons_4
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 64
+        width: 32
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 16, y: 9}
+        - {x: 14, y: 18}
+        - {x: -16, y: 18}
+        - {x: -16, y: -18}
+        - {x: 13, y: -18}
+        - {x: 14, y: -17}
+        - {x: 16, y: -14}
+    - name: Demons_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 288
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 116, y: -26}
+        - {x: 122, y: -31}
+        - {x: 144, y: -31}
+        - {x: 144, y: 31}
+        - {x: -144, y: 31}
+        - {x: -144, y: 21}
+        - {x: -143, y: 20}
+        - {x: -136, y: 20}
+        - {x: -141, y: 17}
+        - {x: -144, y: 14}
+        - {x: -144, y: -31}
+        - {x: -126, y: -31}
+        - {x: -124, y: -26}
+        - {x: -118, y: -31}
+        - {x: 114, y: -31}
     outline: []
   spritePackingTag: 
   userData: 

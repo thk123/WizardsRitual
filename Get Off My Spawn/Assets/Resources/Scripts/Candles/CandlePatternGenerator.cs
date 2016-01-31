@@ -29,6 +29,8 @@ public class CandlePatternGenerator : MonoBehaviour {
     //public Material circle_material;
     public Candle candle_prefab;
     public int circle_side;
+    public GameObject explosion_prefab;
+    public SummonDescription[] summons;
 
     int[] circle_sizes;
     List<List<Vector2>> pattern;
@@ -41,6 +43,7 @@ public class CandlePatternGenerator : MonoBehaviour {
     GameObject CurrentMarker;
     Texture2D circle_drawing;
     GameObject CircleObject;
+
 
 	// Use this for initialization
 	void Awake () {
@@ -127,6 +130,15 @@ public class CandlePatternGenerator : MonoBehaviour {
 
         // Now draw the circle
         DrawCircle();
+
+        //Sort the array of demons
+        System.Array.Sort(summons, (s1, s2) => (int)Mathf.Sign(s1.demon_threshold - s2.demon_threshold));
+
+    }
+
+    void Start()
+    {
+        Summoner.SummonSuccess += SummonDemon;
     }
 
 	// Update is called once per frame
@@ -253,6 +265,23 @@ public class CandlePatternGenerator : MonoBehaviour {
         CurrentMarker.transform.localPosition = Vector3.zero;
 		CurrentMarker.GetComponent<Animator> ().SetTrigger ("zoom_in");
         
+    }
+
+    void SummonDemon()
+    {
+        Instantiate(explosion_prefab, transform.position, transform.rotation);
+        float summon_power = Summoner.sngl.SummonQuality;
+
+        for (int i = summons.Length-1; i >= 0; --i)
+        {
+            print(summons[i].demon_threshold + " " + summon_power);
+            if (summons[i].demon_threshold < summon_power)
+            {
+                // Do the summoning!
+                Instantiate(summons[i].demon_prefab, transform.position, transform.rotation);
+                break;
+            }
+        }
     }
 }
 
