@@ -10,14 +10,18 @@ public class PhysicsPlayerControl : MonoBehaviour {
     Rigidbody2D rbody;
     PIvec2 pid_control;
 
+    Vector2 starting_pos;
+
 	void Awake () {
         pid_control = new PIvec2(P, I, D, Imax);
         rbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        starting_pos = rbody.position; // Memorized, will be used every time we reset
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        print(starting_pos);
         // Get the mouse position, that's our set point
         pid_control.SetPoint((Vector2)MouseCursorScript.sngl.transform.position);
         // Now get the force
@@ -33,5 +37,11 @@ public class PhysicsPlayerControl : MonoBehaviour {
         {
             rbody.AddForce(collid.GetComponent<Rigidbody2D>().velocity *coll_hazard.WizardImpactStrength, ForceMode2D.Impulse);
         }
+    }
+
+    public void Reset()
+    {
+        rbody.position = starting_pos;
+        rbody.velocity = Vector2.zero;
     }
 }
