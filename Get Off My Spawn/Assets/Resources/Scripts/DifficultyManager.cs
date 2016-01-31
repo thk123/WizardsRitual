@@ -8,7 +8,7 @@ public class DifficultyManager : MonoBehaviour {
 
 	public Summoner summoner;
 	public CandlePatternGenerator PatternGenerator;
-	public HazardSpawner hazard;
+	public HazardSpawner hazardSpawner;
 
 	public List<DifficultyScriptableObject> DifficultySequence;
 
@@ -44,9 +44,16 @@ public class DifficultyManager : MonoBehaviour {
 			PatternGenerator.circle_num = DifficultyToLoad.NumberOfCircles;
 			PatternGenerator.tot_radius = DifficultyToLoad.Tot_radius;
 
-			// HAZARD CODE GOES HERE
+			// HAZARDSpawner CODE GOES HERE
+			hazardSpawner.MeanFrequency = DifficultyToLoad.MeanPeriod;
+			hazardSpawner.FrequencyVariance = DifficultyToLoad.PeriodVariance;
+			hazardSpawner.MaxNumberAcrossAllHazards = DifficultyToLoad.MaxNumberAcrossAllHazards;
+
+			hazardSpawner.Hazards = DifficultyToLoad.Hazards;
+
+
 			PatternGenerator.Restart();
-			hazard.Restart();
+			hazardSpawner.Restart();
 			summoner.Restart();
 		}
 	}
