@@ -10,6 +10,7 @@ public class Football : Hazard {
 	bool HasPlayerBooted;
 
 	public float AngleRange = 20.0f;
+	public float PlayerKickBoost = 1.2f;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -41,6 +42,12 @@ public class Football : Hazard {
 			{
 				Vector2 NormalOfCollision = ((Vector2)(transform.position - collider.transform.position)).normalized;
 				MoveDirection = Vector2.Reflect(MoveDirection, NormalOfCollision);
+
+				if(collider.tag == Utility.PlayerTag)
+				{
+					Speed *= PlayerKickBoost;
+				}
+
 				if(!GetComponent<AudioSource>().isPlaying)
 				{
 					GetComponent<AudioSource>().Play();
