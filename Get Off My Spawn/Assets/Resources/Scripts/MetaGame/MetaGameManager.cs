@@ -27,6 +27,12 @@ public class MetaGameManager : MonoBehaviour {
 			ZoomComponent.Restart();
 			ZoomComponent.enabled = true;
 		}
+
+		var Boundaries = GameObject.FindGameObjectsWithTag(Utility.BoundsTag);
+		foreach(var Boundary in Boundaries)
+		{
+			Boundary.GetComponent<Collider2D>().enabled = false;
+		}
 	}
 
 	private void EndMetaGame()
