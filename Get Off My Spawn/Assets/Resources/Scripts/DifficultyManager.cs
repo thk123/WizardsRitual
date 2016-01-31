@@ -12,6 +12,9 @@ public class DifficultyManager : MonoBehaviour {
 
 	public List<DifficultyScriptableObject> DifficultySequence;
 
+	public int LoopingLastNLevels = 1;
+	int CurrentLevel = 0;
+
 	// Use this for initialization
 	void Start () {
 		NextDifficulty();
@@ -24,10 +27,15 @@ public class DifficultyManager : MonoBehaviour {
 
 	public void NextDifficulty()
 	{
-		if(DifficultySequence.Count > 0)
+		if(CurrentLevel < DifficultySequence.Count)
 		{
-			LoadDifficulty(DifficultySequence[0]);
-			DifficultySequence.RemoveAt(0);
+			LoadDifficulty(DifficultySequence[CurrentLevel]);
+			++CurrentLevel;
+		}
+		else
+		{
+			int LevelToLoop = Random.Range(DifficultySequence.Count - LoopingLastNLevels, DifficultySequence.Count);
+			LoadDifficulty(DifficultySequence[LevelToLoop]);
 		}
 	}
 
