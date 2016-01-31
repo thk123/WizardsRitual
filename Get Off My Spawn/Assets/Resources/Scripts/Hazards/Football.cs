@@ -10,7 +10,8 @@ public class Football : Hazard {
 	bool HasPlayerBooted;
 
 	public float AngleRange = 20.0f;
-	public float PlayerKickBoost = 1.2f;
+	public float PlayerKickBoostMin = 1.2f;
+	public float PlayerKickBoostMax = 3.0f;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -45,7 +46,8 @@ public class Football : Hazard {
 
 				if(collider.tag == Utility.PlayerTag)
 				{
-					Speed *= PlayerKickBoost;
+					float PSpeed = collider.GetComponent<Rigidbody2D>().velocity.magnitude;
+					Speed *= Mathf.Clamp(PSpeed, PlayerKickBoostMin, PlayerKickBoostMax);
 				}
 
 				if(!GetComponent<AudioSource>().isPlaying)
