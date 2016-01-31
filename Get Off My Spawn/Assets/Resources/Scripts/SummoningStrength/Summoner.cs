@@ -177,4 +177,9 @@ public class Summoner : MonoBehaviour {
             Time.timeScale = 1.0f;
         }
     }
+
+    public void OnDestroy()
+    {
+        SummonSuccess = null;
+    }
 }
