@@ -26,7 +26,7 @@ public class DemonSmash : MonoBehaviour {
 		
 		if(collid.tag == Utility.BuildingsTag)
 		{
-			TargetBuilding = collid.GetComponentInParent<Building>();
+			TargetBuilding = GetBuildingFromCollider(collid);
 			if(TargetBuilding == null)
 			{
 				Debug.LogWarning("Building component not found on the parent of the collider tagged with building: " + collid.name);
@@ -36,12 +36,17 @@ public class DemonSmash : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerLeave2D(Collider2D collid)
+	void OnTriggerExit2D(Collider2D collid)
 	{
-		if(collid.GetComponent<Building>() == TargetBuilding)
+		if(GetBuildingFromCollider(collid) == TargetBuilding)
 		{
 			StopCoroutine(HitBuildingCoroutine);
 		}
+	}
+
+	Building GetBuildingFromCollider(Collider2D collid)
+	{
+		return collid.GetComponentInParent<Building>();	
 	}
 
 	IEnumerator HitBuilding()
