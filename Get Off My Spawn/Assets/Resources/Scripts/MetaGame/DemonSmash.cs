@@ -23,9 +23,14 @@ public class DemonSmash : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collid)
 	{
+		
 		if(collid.tag == Utility.BuildingsTag)
 		{
-			TargetBuilding = collid.GetComponent<Building>();
+			TargetBuilding = collid.GetComponentInParent<Building>();
+			if(TargetBuilding == null)
+			{
+				Debug.LogWarning("Building component not found on the parent of the collider tagged with building: " + collid.name);
+			}
 			HitBuildingCoroutine = HitBuilding();
 			StartCoroutine(HitBuildingCoroutine);
 		}
