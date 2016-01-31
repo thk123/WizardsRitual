@@ -10,19 +10,35 @@ public class ZoomOut : MonoBehaviour {
 
 	float CurrentTime;
 	float StartingSize;
+	float CurrentTargetSize;
 
-	Camera camera;
+
+	Camera zoomingCamera;
+
+	void Awake()
+	{
+		zoomingCamera = GetComponent<Camera>();
+	}
+
 	// Use this for initialization
 	void Start () {
-		camera = GetComponent<Camera>();
 		Restart();
-		print(camera);
 	}
 
 	public void Restart()
 	{
 		CurrentTime = 0.0f;
-		StartingSize = camera.orthographicSize;
+
+		CurrentTargetSize = TargetZoom;
+		StartingSize = zoomingCamera.orthographicSize;
+	}
+
+	public void Reverse()
+	{
+		CurrentTime = 0.0f;
+
+		CurrentTargetSize = StartingSize;
+		StartingSize = zoomingCamera.orthographicSize;
 	}
 	
 	// Update is called once per frame
@@ -31,8 +47,8 @@ public class ZoomOut : MonoBehaviour {
 
 		if(CurrentTime <= ZoomTime)
 		{
-			float NewSize = Mathf.Lerp(StartingSize, TargetZoom, InterpolationCurve.Evaluate(CurrentTime / ZoomTime));
-			camera.orthographicSize = NewSize;
+			float NewSize = Mathf.Lerp(StartingSize, CurrentTargetSize, InterpolationCurve.Evaluate(CurrentTime / ZoomTime));
+			zoomingCamera.orthographicSize = NewSize;
 		}
 		else
 		{

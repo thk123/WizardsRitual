@@ -84,7 +84,19 @@ public class Summoner : MonoBehaviour {
         if (SummonSuccess != null)
             SummonSuccess();
 
-        FindObjectOfType<DifficultyManager>().NextDifficulty();
+        MetaGameManager MetaGame =FindObjectOfType<MetaGameManager>();
+        if(MetaGame != null)
+        {
+            MetaGame.StartMetaGame();
+            // TODO: if we want a different decay rate for the demon then we
+            // should change the ISumonQualityPenalty here
+        }
+        else
+        {
+            FindObjectOfType<DifficultyManager>().NextDifficulty();  
+        }
+
+        //
         // Also destroy every Hazard
         /*
         Hazard[] all_hazards = GameObject.FindObjectsOfType<Hazard>();
