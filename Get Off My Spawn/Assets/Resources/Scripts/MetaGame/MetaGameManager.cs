@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
+using System.Linq;
 public class MetaGameManager : MonoBehaviour {
 
 	public Summoner sumoner;
 
 	public PhysicsPlayerControl Wizard;
-	public PhysicsPlayerControl Demon;
+	PhysicsPlayerControl Demon;
 	// Use this for initialization
 	void Start () {
 	
@@ -32,6 +33,8 @@ public class MetaGameManager : MonoBehaviour {
 
 		SetBoundariesEnabled(false);
 
+		Demon = FindObjectsOfType<PhysicsPlayerControl>().Where(Controller => Controller.GetComponent<DemonSmash>() != null).First();
+
 		Wizard.gameObject.active = false;
 		Demon.gameObject.active = true;
 	}
@@ -39,7 +42,7 @@ public class MetaGameManager : MonoBehaviour {
 	private void EndMetaGame()
 	{
 		Wizard.gameObject.active = true;
-		Demon.gameObject.active = false;
+		GameObject.Destroy(Demon.gameObject);
 
 		ZoomOut ZoomComponent = Camera.main.GetComponent<ZoomOut>();
 		if(ZoomComponent != null)
