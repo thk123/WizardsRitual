@@ -32,4 +32,5 @@ public class Utility : MonoBehaviour {
 	public const string CandleTag = "Candle";	
 	public const string BoundsTag = "Bounds";
 	public const string BuildingsTag = "Building";
+	public const string CandleLighter = "CandleLighter";
 }
