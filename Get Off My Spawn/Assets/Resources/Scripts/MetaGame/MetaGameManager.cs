@@ -5,6 +5,8 @@ public class MetaGameManager : MonoBehaviour {
 
 	public Summoner sumoner;
 
+	public PhysicsPlayerControl Wizard;
+	public PhysicsPlayerControl Demon;
 	// Use this for initialization
 	void Start () {
 	
@@ -33,16 +35,24 @@ public class MetaGameManager : MonoBehaviour {
 		{
 			Boundary.GetComponent<Collider2D>().enabled = false;
 		}
+
+		Wizard.gameObject.active = false;
+		Demon.gameObject.active = true;
 	}
 
 	private void EndMetaGame()
 	{
+		Wizard.gameObject.active = true;
+		Demon.gameObject.active = false;
+
 		ZoomOut ZoomComponent = Camera.main.GetComponent<ZoomOut>();
 		if(ZoomComponent != null)
 		{
 			ZoomComponent.Reverse();
 			ZoomComponent.enabled = true;
 		}
+
+		FindObjectOfType<DifficultyManager>().NextDifficulty();  
 
 		enabled = false;
 	}
