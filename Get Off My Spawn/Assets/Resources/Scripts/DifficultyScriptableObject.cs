@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [CreateAssetMenuAttribute]
 public class DifficultyScriptableObject : ScriptableObject {
@@ -20,8 +21,5 @@ public class DifficultyScriptableObject : ScriptableObject {
 	public float PeriodVariance = 1.0f;
 	public int MaxNumberAcrossAllHazards = 4;
 
-	public HazardDefinition WaterBalloonDifficulty = new HazardDefinition(0.1f, 1);
-
-	public HazardDefinition FootballDifficulty = new HazardDefinition(0.9f, 3);
-	public HazardDefinition DogDifficulty = new HazardDefinition(0.1f, 2);
+	public List<HazardDefinition> Hazards;
 }
